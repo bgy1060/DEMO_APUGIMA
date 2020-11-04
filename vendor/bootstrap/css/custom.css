@@ -3594,6 +3594,7 @@ input[type="button"].btn-block {
   width: 100%;
 }
 
+<<<<<<< HEAD
 .input-group-2 {
   position: relative;
   display: -ms-flexbox;
@@ -3605,6 +3606,8 @@ input[type="button"].btn-block {
   width: 40%;
 }
 
+=======
+>>>>>>> e282c64cfaf1dc6251f2efbd3b17195332788c5e
 .input-group > .form-control,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
