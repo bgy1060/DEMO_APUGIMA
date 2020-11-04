@@ -96,13 +96,12 @@
     <div class="card mb-4">
       <h5 class="card-header">Search</h5>
       <div class="card-body">
-        <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:50%;">
+				<form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
           <input type="text" class="form-control" name="input" placeholder="Search by hospital name or type...">
           <span class="input-group-append">
             <input type="submit" class="btn btn-secondary" value="Go !" ></input>
           </span>
         </form>
-
 				<hr>
 				<!-- Comment with nested comments -->
 				<?php
@@ -116,9 +115,8 @@
 					</div>
 				</div>
 			-->
-
 				<hr>
-
+				<div style='text-align:center;'><a href="hospitals.php">Back</a></div>
       </div>
 
 	  </div>
@@ -172,10 +170,13 @@
 	            }
 	          }
 	        }
+					else {
+						echo "<h3 style='text-align: center; padding:100px'>NO REVIEW WITH THE NAME OR TYPE $input</h3>";
+					}
 	      }
 	    }
 			else {
-				echo "<h3 style='text-align: center;'>NO REVIEW WITH THE NAME OR TYPE $input";
+				echo "<h3 style='text-align: center;padding:100px'>NO HOSPITAL WITH THE NAME OR TYPE $input</h3>";
 			}
 	}
 	?>

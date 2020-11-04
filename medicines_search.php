@@ -118,7 +118,7 @@
 			-->
 
 				<hr>
-
+				<div style='text-align:center;'><a href="medicines.php">Back</a></div>
       </div>
 
 	  </div>
@@ -172,10 +172,13 @@
 	            }
 	          }
 	        }
+					else {
+						echo "<h3 style='text-align: center; padding:100px'>NO REVIEW WITH THE NAME OR TYPE $input</h3>";
+					}
 	      }
 	    }
 			else {
-				echo "<h3 style='text-align: center;'>NO REVIEW WITH THE NAME OR TYPE $input";
+				echo "<h3 style='text-align: center;padding:100px'>NO MEDICINE WITH THE NAME OR TYPE $input</h3>";
 			}
 	}
 	?>
