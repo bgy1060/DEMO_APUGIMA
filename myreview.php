@@ -86,7 +86,7 @@
     </div>
 
     <div class="card mb-4">
-      <div class="card-body">
+      <div class="card-body" style="min-height:40vh;">
         <div class="row">
 
 					<!--

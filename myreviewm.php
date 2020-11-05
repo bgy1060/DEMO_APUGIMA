@@ -86,7 +86,7 @@
     </div>
 
     <div class="card mb-4">
-      <div class="card-body">
+      <div class="card-body" style="min-height:40vh;">
         <div class="row">
 					<?php
 						load_myreview_medicine($conn);
@@ -121,16 +121,17 @@
 	<?php
 	  function load_myreview_medicine($conn){
 	    $ID=1;
-	    $sql = "SELECT medicine_id, memo, rate FROM medicine_reviews WHERE uid=$ID;";
+	    $sql = "SELECT medicine_review_id, medicine_id, memo, rate FROM medicine_reviews WHERE uid=$ID;";
 	    $result = mysqli_query($conn, $sql);
 	    $resultCheck = mysqli_num_rows($result); //check if result is null
 	    if ($resultCheck >0){
 	      while ($row = mysqli_fetch_assoc($result)) { //for each row
-	        $medicine_id = $row['medicine_id'];
+					$medicine_review_id = $row['medicine_review_id'];
+					$medicine_id = $row['medicine_id'];
 	        $memo = $row['memo'];
 	        $rate = $row['rate'];
-	        echo "<div class='col-lg-12'><h3 class='card-title'>$medicine_id</h3>
-	          <p class='card-text'>$memo $rate 점<a href='#' >삭제</a></p>
+	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_id</h4>
+	          <p class='card-text'>$memo ($rate 점)<a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> 삭제</a></p>
 	        </div>";
 	      }
 	    }
