@@ -121,17 +121,17 @@
 	<?php
 	  function load_myreview_medicine($conn){
 	    $ID=1;
-	    $sql = "SELECT medicine_review_id, medicine_id, memo, rate FROM medicine_reviews WHERE uid=$ID;";
+	    $sql = "SELECT A.medicine_name, B.medicine_review_id, B.memo, B.rate FROM medicines AS A, medicine_reviews AS B WHERE uid=$ID AND A.medicine_id=B.medicine_id;";
 	    $result = mysqli_query($conn, $sql);
 	    $resultCheck = mysqli_num_rows($result); //check if result is null
 	    if ($resultCheck >0){
 	      while ($row = mysqli_fetch_assoc($result)) { //for each row
+					$medicine_name = $row['medicine_name'];
 					$medicine_review_id = $row['medicine_review_id'];
-					$medicine_id = $row['medicine_id'];
 	        $memo = $row['memo'];
 	        $rate = $row['rate'];
-	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_id</h4>
-	          <p class='card-text'>$memo ($rate 점)<a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> 삭제</a></p>
+	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_name</h4>
+	          <p>\"$memo\" ($rate 점)<a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> 삭제</a></p>
 	        </div>";
 	      }
 	    }
