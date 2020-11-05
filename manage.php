@@ -47,8 +47,8 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
               <a class="dropdown-item" href="#">Diary</a>
               <a class="dropdown-item" href="#">Prescriptions</a>
-              <a class="dropdown-item active" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="manage.php">Manage</a>
+              <a class="dropdown-item" href="myreview.php">My Review</a>
+							<a class="dropdown-item active" href="manage.php">Manage</a>
             </div>
           </li>
         </ul>
@@ -61,43 +61,48 @@
 
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">My Page
-      <small>My Review</small>
+      <small>Manage</small>
     </h1>
-    <!--
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Pricing</li>
-    </ol>-->
 
-		<!-- Content Row -->
+		<!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewh.php" class="btn"><h3>Hospital</h3>Manage my reviews</a>
-        </div>
+      <div class="col-lg-8 mb-4">
+        <h4>Manage your account</h4>
+				<!--
+        <form name="manageAccount" novalidate>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>ID: </label>
+              <input type="text" class="form-control" id="user_id" required data-validation-required-message="Please enter your id.">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Password: </label>
+              <input type="text" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls">
+              <label>Name:</label>
+              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+            </div>
+          </div>
+          <div id="success"></div>
+          <! - - For success/fail messages
+          <button type="submit" class="btn btn-primary" id="manageAccountButton">Change</button>
+        </form>
+				-->
+				<?php
+				$id='';
+				echo "<a href='includes/delete_account.php?id=$id'>DELETE ACCOUNT</a>";
+				?>
       </div>
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewm.php" class="btn"><h3>Medicine</h3>Manage my reviews</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="card mb-4">
-      <div class="card-body" style="min-height:40vh;">
-        <div class="row">
-
-					<!--
-          <div class="col-lg-12">
-						<h3 class="card-title">Hospital Code</h3>
-            <p class="card-text">Review</p>
-						<a href="#" >삭제</a>
-          </div>-->
-        </div>
-      </div>
     </div>
+    <!-- /.row -->
 
   </div>
   <!-- /.container -->

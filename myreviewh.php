@@ -48,7 +48,7 @@
               <a class="dropdown-item" href="#">Diary</a>
               <a class="dropdown-item" href="#">Prescriptions</a>
               <a class="dropdown-item active" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="#">Manage</a>
+							<a class="dropdown-item" href="manage.php">Manage</a>
             </div>
           </li>
         </ul>
@@ -131,7 +131,7 @@
 	        $memo = $row['memo'];
 	        $rate = $row['rate'];
 	        echo "<div class='col-lg-12'><h4 class='card-title'>$hospital_name</h4>
-	          <p>\"$memo\" ($rate 점)<a href='includes/delete_myreviewh.php?rid=$hospital_review_id'> 삭제</a></p>
+	          <p>\"$memo\" ($rate 점)<a href='includes/delete_myreviewh.php?rid=$hospital_review_id'> DELETE</a></p>
 	        </div>";
 	      }
 	    }

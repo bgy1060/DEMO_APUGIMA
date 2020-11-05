@@ -48,7 +48,7 @@
               <a class="dropdown-item" href="#">Diary</a>
               <a class="dropdown-item" href="#">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="#">Manage</a>
+							<a class="dropdown-item" href="manage.php">Manage</a>
             </div>
           </li>
         </ul>
