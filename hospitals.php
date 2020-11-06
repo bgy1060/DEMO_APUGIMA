@@ -38,7 +38,7 @@
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Column</a>
+						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
