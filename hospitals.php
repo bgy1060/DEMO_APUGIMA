@@ -126,7 +126,7 @@
 				$hospital_name = $row1['hospital_name'];
 				$hospital_id = $row1['hospital_id'];
 				$avg_rate = number_format($row1['avg(B.rate)'],1);
-				echo "<h3>$hospital_name 평점: $avg_rate</h3>";
+				echo "<h3><a href='hospital_detail.php?id=$hospital_id&rate=$avg_rate'>$hospital_name</a> 평점: $avg_rate</h3>";
 				$sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$hospital_id;";
 				$result2 = mysqli_query($conn, $sql2);
 				$resultCheck = mysqli_num_rows($result2);

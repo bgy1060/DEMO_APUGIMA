@@ -70,28 +70,16 @@
 
     <!-- Content Row -->
     <!-- Search Widget -->
+
     <div class="card mb-4">
-      <h5 class="card-header">Search</h5>
+      <h5 class="card-header">Hospital Information</h5>
       <div class="card-body">
-				<form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
-          <input type="text" class="form-control" name="input" placeholder="Search by hospital name or type...">
-          <span class="input-group-append">
-            <input type="submit" class="btn btn-secondary" value="Go !" ></input>
-          </span>
-        </form>
 				<hr>
 				<!-- Comment with nested comments -->
 				<?php
-					load_hospital_reviews_searched($conn);
+					load_hospital_detail($conn);
 				?>
-				<!--
-				<div class="media mb-4">
-					<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-					<div class="media-body">
-						<h5 class="mt-0">Commenter Name</h5>리뷰내용
-					</div>
-				</div>
-			-->
+
 				<hr>
 				<div style='text-align:center;'><a href="hospitals.php">Back</a></div>
       </div>
@@ -106,7 +94,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-			<p class="m-0 text-center text-white">DEMO 2020</p>
+      <p class="m-0 text-center text-white">DEMO 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -116,45 +104,19 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<?php
-	  function load_hospital_reviews_searched($conn){
-			$input = $_GET['input'];
-	    $sql0 = "SELECT hospital_id FROM hospitals WHERE hospital_name LIKE '%$input%' OR hospital_type LIKE '%$input%';";
-	    $result0 = mysqli_query($conn, $sql0);
-	    $resultCheck = mysqli_num_rows($result0);
-	    if ($resultCheck >0){
-	      while ($row0 = mysqli_fetch_assoc($result0)){
-	        $target_id = $row0['hospital_id'];
-	        $sql1 = "SELECT A.hospital_name, A.hospital_id, avg(B.rate) FROM hospitals AS A, hospital_reviews AS B WHERE B.hospital_id=$target_id AND A.hospital_id=B.hospital_id GROUP BY B.hospital_id;";
-	        $result1 = mysqli_query($conn, $sql1);
-	        $resultCheck = mysqli_num_rows($result1); //check if result is null
-	        if ($resultCheck >0){
-	          while ($row1 = mysqli_fetch_assoc($result1)) { //for each row
-	            $hospital_name = $row1['hospital_name'];
-	            $hospital_id = $row1['hospital_id'];
-							$avg_rate = number_format($row1['avg(B.rate)'],1);
-	            echo "<h3>$hospital_name Rate: $avg_rate</h3>";
-	            $sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$hospital_id;";
-	            $result2 = mysqli_query($conn, $sql2);
-	            $resultCheck = mysqli_num_rows($result2);
-	            while ($row2 = mysqli_fetch_assoc($result2)){
-	              $user_id = $row2['user_id'];
-	              $memo = $row2['memo'];
-	              echo "<div class='media mb-4'><img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>
-	                        <div class='media-body'>
-	                          <h5 class='mt-0'>$user_id</h5>$memo
-	                        </div>
-	                      </div>";
-	            }
-	          }
-	        }
-					else {
-						echo "<h3 style='text-align: center; padding:100px'>NO REVIEW WITH THE NAME OR TYPE $input</h3>";
-					}
-	      }
-	    }
-			else {
-				echo "<h3 style='text-align: center;padding:100px'>NO HOSPITAL WITH THE NAME OR TYPE $input</h3>";
-			}
+	function load_hospital_detail($conn){
+		$sql= "SELECT * FROM hospitals WHERE hospital_id='$_GET[id]';";
+		$result = mysqli_query($conn, $sql);
+		if ($result){
+			$row = mysqli_fetch_assoc($result);
+			echo "<h3>$row[hospital_name] Rate: $_GET[rate]</h3>";
+			echo "<p>Hospital type: $row[hospital_type]<br>";
+			echo "Address: $row[hospital_address]<br>";
+			echo "Contact: $row[hospital_number]<br></p>";
+		}
+		else {
+			echo "<h3 style='text-align: center;'>Error occured. Try again.</h3>";
+		}
 	}
 	?>
 </body>
