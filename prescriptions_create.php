@@ -1,11 +1,17 @@
 <?php
-	include_once 'includes/dbh.inc.php';
+    include_once 'includes/dbh.inc.php';
+    
+    $hospital_id = "SELECT hospital_id from hospitals WHERE hospital_name=$_POST['params_hosptial']";
+    $disease_id = "SELECT disease_id from diseases WHERE disease_name=$_POST['params_disease']";
 
     $sql = "
     INSERT INTO prescriptions
-        (uid, prescriptions_date, prescription_price, doctor_name)
+        (uid, hospital_id, disease_id, prescriptions_date, prescription_price, memo, doctor_name)
         VALUES(
             '{$_POST['uid']}',
+            '{$hospital_id},
+            '{$disease_id},
+            '{$_POST['memo']}',
             '{$_POST['params_date']}',
             '{$_POST['params_price']}',
             '{$_POST['params_doctor']}'

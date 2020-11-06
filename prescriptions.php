@@ -59,9 +59,6 @@
    	 	padding-bottom: 7px;
 		margin-top: 15px;
 	}
-	#params_memo{
-		height : 50px;
-	}
 	.col-lg-8 {
     flex: none;
     max-width: none;
@@ -126,13 +123,13 @@
     <div class="row">
       <div class="col-lg-8 mb-4">
         <h5>Please write your prescription</h5>
-        <form id="sendPrescription" novalidate>
+        <form id="sendPrescription" action="prescriptions_create.php" method="post" novalidate>
           <div class="control-group form-group">
             <div class="controls">
               <label>Hospitals:</label>
               <input type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
 			<span class="input-group-append">
-					<input type="submit" onclick="openChild('modal_search_hospital.php', this);" class="btn btn-secondary" value="Search" ></input>
+					<input type="button" onclick="openChild('modal_search_hospital.php', this);" class="btn btn-secondary" value="Search" ></input>
 			</span> 
 			  <p class="help-block"></p>
             </div>
@@ -142,7 +139,7 @@
 			  <label>Diseases:</label>
 			  <input type="text" class="form-control"  name="params_disease" id="pre_disease" required data-validation-required-message="Please search disease.">
 			<span class="input-group-append">
-					<input type="submit" onclick="openChild('modal_search_disease.php', this);" class="btn btn-secondary" value="Search" ></input>
+					<input type="button" onclick="openChild('modal_search_disease.php', this);" class="btn btn-secondary" value="Search" ></input>
 			</span>
             </div>
           </div>
@@ -155,19 +152,19 @@
 		  <div class="control-group form-group">
             <div class="controls">
               <label>Doctor Name:</label>
-              <input type="text" class="form-control" id="params_doctor">
+              <input type="text" class="form-control" name="params_doctor">
             </div>
 		  </div>
 		  <div class="control-group form-group">
             <div class="controls">
               <label>Price :</label>
-			  <input type="text" class="form-control" id="params_price">
+			  <input type="text" class="form-control" name="params_price">
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls">
               <label>Memo:</label>
-              <textarea rows="10" cols="100" class="form-control" id="params_memo" maxlength="999" style="resize:none"></textarea>
+              <textarea style="height : 50px;" rows="10" cols="100" class="form-control" name="params_memo" maxlength="999" style="resize:none"></textarea>
 			</div>
 			<p class="help-block"></p>
 		  </div>
