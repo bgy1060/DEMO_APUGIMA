@@ -1,8 +1,12 @@
 <?php
 	include_once 'includes/dbh.inc.php';
 ?>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+	
 	window.onload = function() {
 		checkDiseaseSession();
 		checkHospitalSession();
@@ -71,6 +75,14 @@
 		position: absolute;
 		left: 35%;
 		top: 110%;
+	}
+	#accordion{
+		position: relative;
+		left: 43%;
+		bottom: 54%;
+	}
+	.card-title{
+		font-weight :600; 
 	}
 </style>
 <body>
@@ -174,16 +186,58 @@
         </form>
       </div>
 
+	  <div class="col-lg-8 mb-4 list" style="position: absolute; right: 7%;">
+        <h5>Prescription List</h5>
+
+      </div>
+
     </div>
     <!-- /.row -->
 	<?php
-		$sql = "SELECT * FROM prescriptions, hospitals, diseases WHERE prescriptions.hospital_id = hospitals.hospital_id AND prescriptions.disease_id=diseases.disease_id;";
+
+		$sql = "SELECT * FROM prescriptions 
+				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id 
+				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id;";
+
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 
 		if($resultCheck > 0){
 			while($row = mysqli_fetch_assoc($result)){
-				echo $row['prescription_id'] ."번 ". $row['prescription_date']. " 병원이름: " . $row['hospital_name']. " 질병이름: ". $row['disease_name'].  " 메모: " .$row['memo'] . " 가격: ".$row['prescription_price']. "원". "교수님: " . $row['doctor_name'] . "<br>";
+
+				$prescription_id = $row['prescription_id'];
+				$headingId = "heading$prescription_id";
+				$collapseId = "collapse$prescription_id";
+				$disease_id = $row['disease_id'];
+				$disease_name = $row['disease_name'];
+
+				$prescription_date = $row['prescription_date'];
+				$hospital_name  = $row['hospital_name'];
+
+				$memo = $row['memo'];
+				$price = $row['prescription_price'];
+				$doctor = $row['doctor_name'];
+
+
+				echo "<div class='mb-4' id='accordion' role='tablist' aria-multiselectable='true'>
+				<div class='card'>
+					<div class='card-header' role='tab' id='$headingId'>
+					<h6 class='mb-0'>
+						<a data-toggle='collapse' data-parent='#accordion' href='#$collapseId' aria-expanded='true' aria-controls='$collapseId'>$prescription_date</a>
+					</h6>
+					</div>
+
+					<div id='$collapseId' class='collapse' role='tabpanel' aria-labelledby=$headingId>
+					<div class='card-body'>
+						<p class='card-hospital-name'> <span class='card-title'> Hospital Name </span> : $hospital_name</p>
+						<p class='card-disease-name'> <span class='card-title'> Disease Name </span> : $disease_name</p>
+						<p class='card-price'><span class='card-title'> Price </span> : $price <span class='card-title'> 원 </span></p>
+						<p class='card-doctor'><span class='card-title'> Doctor </span> : $doctor</p>
+						<p class='card-memo'><span class='card-title'> Memo </span> : $memo</p>
+					</div>
+					</div>
+				</div>
+				</div>";
 			}
 		}
 	?>
