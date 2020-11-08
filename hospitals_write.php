@@ -1,5 +1,13 @@
 <?php
-	include_once 'includes/dbh.inc.php';
+    include_once 'includes/dbh.inc.php';
+    session_start();
+    if(!isset($_SESSION['userid'])){?>
+        <script>
+             alert("로그인 먼저 해주세요.");
+             location.replace("./login.php");
+        </script>
+    <?php
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +33,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Apugima</a>
+      <a class="navbar-brand" href="index.php">Apugima</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -65,7 +73,8 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Register</a></div>
+            <a href="hospital_write_action.php" class="btn btn-primary">Register</a></div>
+            
 	</div>
 
     <!-- Content Row -->
@@ -81,20 +90,20 @@
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Hospital Name:</label>
-              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+              <input type="text" class="form-control" id="hospital_name" required data-validation-required-message="Please enter your name.">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Grade:</label>
-              <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+              <input type="text" class="form-control" id="hospital_grade" required data-validation-required-message="Please enter your phone number.">
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Memo:</label>
-              <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none" ></textarea>
+              <textarea rows="10" cols="100" class="form-control" id="hospt" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none" ></textarea>
             </div>
           </div>
           <div id="success"></div>

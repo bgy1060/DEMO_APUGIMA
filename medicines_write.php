@@ -1,5 +1,13 @@
 <?php
-	include_once 'includes/dbh.inc.php';
+    include_once 'includes/dbh.inc.php';
+    session_start();
+    if(!isset($_SESSION['userid'])){?>
+        <script>
+             alert("로그인 먼저 해주세요.");
+             location.replace("./login.php");
+        </script>
+    <?php
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,7 +33,7 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Apugima</a>
+      <a class="navbar-brand" href="index.php">Apugima</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -57,7 +65,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container" ">
+  <div class="container" >
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
