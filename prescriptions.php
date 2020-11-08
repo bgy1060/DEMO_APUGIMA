@@ -263,6 +263,12 @@
 						<p class='card-doctor'><span class='card-title'> Doctor </span> : $doctor</p>
 						<p class='card-memo'><span class='card-title'> Memo </span> : $memo</p>
 					</div>
+					<a href='includes/delete_prescriptions.php?id=$prescription_id' style='left: 50%;
+						position: relative;
+						border: 1px solid;
+						padding: 5px;
+						bottom: 20px;'
+					>DELETE</a>
 					</div>
 				</div>
 				</div>";
