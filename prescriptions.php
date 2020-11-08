@@ -1,4 +1,5 @@
 <?php
+    session_start();
 	include_once 'includes/dbh.inc.php';
 ?>
 <!-- Bootstrap core JavaScript -->
@@ -194,10 +195,11 @@
     </div>
     <!-- /.row -->
 	<?php
-
+    	$user_id = $_SESSION['userid'];
 		$sql = "SELECT * FROM prescriptions 
 				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id 
-				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id;";
+				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id
+				WHERE uid=$user_id;";
 
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
