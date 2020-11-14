@@ -18,7 +18,7 @@
                 $row=mysqli_fetch_assoc($result);
                 //비밀번호가 맞다면 세션 생성
                 if(trim($row['user_password'])==$pw){
-                        $_SESSION['userid']=$id;
+                        $_SESSION['userid']=$row['uid'];
                         if(isset($_SESSION['userid'])){
                         ?>      <script>
                                         alert("로그인 되었습니다.");

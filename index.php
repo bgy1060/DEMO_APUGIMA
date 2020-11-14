@@ -49,22 +49,22 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            </div>
-          </li>
+            
           <li class="nav-item">
           <?php
                 
                 if(isset($_SESSION['userid'])) {
           ?>
-                        <button onclick="location.href='./logout.php'">로그아웃</button>
-                        <br/>
+                        <a class="nav-link" href='./logout.php'>Logout</a>
         <?php
                 }
                 else {
-        ?>              <button onclick="location.href='./login.php'">로그인</button>
-                        <br />
+        ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
+        </div>
+        </li>
+
 					</li>
         </ul>
       </div>

@@ -65,15 +65,13 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container" ">
+  <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
     <h1 class="mt-4 mb-3">Hospitals
       <small>Reviews and ratings</small>
     </h1>
-		<div class="mt-auto mb-3 ml-auto">
-            <a href="hospital_write_action.php" class="btn btn-primary">Register</a></div>
             
 	</div>
 
@@ -83,32 +81,32 @@
     <div class="card mb-4"  >
       <h5 class="card-header">Please write a review of the hospital you visited</h5>
       <div class="card-body"  >
-        <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto"></form>
         <div class="row">
       <div class="col-lg-8 mb-4">
-        <form name="sentMessage" id="contactForm" novalidate>
+        <form action="hospital_write_action.php" method="POST">
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Hospital Name:</label>
-              <input type="text" class="form-control" id="hospital_name" required data-validation-required-message="Please enter your name.">
+              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter your name.">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Grade:</label>
-              <input type="text" class="form-control" id="hospital_grade" required data-validation-required-message="Please enter your phone number.">
+              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter your phone number.">
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Memo:</label>
-              <textarea rows="10" cols="100" class="form-control" id="hospt" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none" ></textarea>
+              <textarea style="height : 300px;" rows="10" cols="100" class="form-control" name="params_memo" maxlength="999" style="resize:none"></textarea>
             </div>
           </div>
-          <div id="success"></div>
+          <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
           
-        </form>
+       
+        </for>
       </div>
 
     </div>

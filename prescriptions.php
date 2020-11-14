@@ -1,8 +1,13 @@
 <?php
+    session_start();
 	include_once 'includes/dbh.inc.php';
 ?>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+	
 	window.onload = function() {
 		checkDiseaseSession();
 		checkHospitalSession();
@@ -22,6 +27,31 @@
 		if(hospital == null || hospital == undefined) return;
 		document.getElementById("pre_hospital").value = hospital; //일반적인 방법
 	}
+
+	function checkForm() {
+		var hospital = document.sendPrescription.params_hosptial;
+		// 병원 입력 유무 체크
+		if(hospital.value == '' ) {
+			window.alert("Please enter hospital");
+			return false; // 병원 입력이 안되어 있다면 submint 이벤트를 중지, 페이지 reload
+		}
+		var disease = document.sendPrescription.params_disease;
+		// 병 입력 유무 체크
+		if(disease.value == ''){
+			window.alert("Please enter disease name");
+			window.reload();
+			return false;
+		}
+		// TODO: 날짜 입력 유무 체크 -> 실패
+		// var date = document.sendPrescription.params_date;
+		// if(strtotime(date) == 0){
+		// 	window.alert("Please enter date");
+		// 	window.reload();
+		// 	return false;
+		// }
+
+	}
+
 </script>
 
 <!DOCTYPE html>
@@ -71,6 +101,14 @@
 		position: absolute;
 		left: 35%;
 		top: 110%;
+	}
+	#accordion{
+		position: relative;
+		left: 43%;
+		bottom: 54%;
+	}
+	.card-title{
+		font-weight :600; 
 	}
 </style>
 <body>
@@ -123,11 +161,11 @@
     <div class="row">
       <div class="col-lg-8 mb-4">
         <h5>Please write your prescription</h5>
-        <form id="sendPrescription" action="prescriptions_create.php" method="post" novalidate>
+        <form name="sendPrescription" action="prescriptions_create.php" method="post" onsubmit="return checkForm();">
           <div class="control-group form-group">
             <div class="controls">
-              <label>Hospitals:</label>
-              <input type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
+              <label>Hospital:</label>
+              <input readonly type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
 			<span class="input-group-append">
 					<input type="button" onclick="openChild('modal_search_hospital.php', this);" class="btn btn-secondary" value="Search" ></input>
 			</span> 
@@ -136,8 +174,8 @@
           </div>
           <div class="control-group form-group">
             <div class="controls">
-			  <label>Diseases:</label>
-			  <input type="text" class="form-control"  name="params_disease" id="pre_disease" required data-validation-required-message="Please search disease.">
+			  <label>Disease:</label>
+			  <input readonly type="text" class="form-control"  name="params_disease" id="pre_disease" required data-validation-required-message="Please search disease.">
 			<span class="input-group-append">
 					<input type="button" onclick="openChild('modal_search_disease.php', this);" class="btn btn-secondary" value="Search" ></input>
 			</span>
@@ -174,16 +212,66 @@
         </form>
       </div>
 
+	  <div class="col-lg-8 mb-4 list" style="position: absolute; right: 7%;">
+        <h5>Prescription List</h5>
+
+      </div>
+
     </div>
     <!-- /.row -->
 	<?php
-		$sql = "SELECT * FROM prescriptions, hospitals, diseases WHERE prescriptions.hospital_id = hospitals.hospital_id AND prescriptions.disease_id=diseases.disease_id;";
+    	$user_id = $_SESSION['userid'];
+		$sql = "SELECT * FROM prescriptions 
+				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id 
+				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id
+				WHERE uid=$user_id
+				ORDER BY prescription_date DESC;";
+
 		$result = mysqli_query($conn, $sql);
 		$resultCheck = mysqli_num_rows($result);
 
 		if($resultCheck > 0){
 			while($row = mysqli_fetch_assoc($result)){
-				echo $row['prescription_id'] ."번 ". $row['prescription_date']. " 병원이름: " . $row['hospital_name']. " 질병이름: ". $row['disease_name'].  " 메모: " .$row['memo'] . " 가격: ".$row['prescription_price']. "원". "교수님: " . $row['doctor_name'] . "<br>";
+
+				$prescription_id = $row['prescription_id'];
+				$headingId = "heading$prescription_id";
+				$collapseId = "collapse$prescription_id";
+				$disease_id = $row['disease_id'];
+				$disease_name = $row['disease_name'];
+
+				$prescription_date = $row['prescription_date'];
+				$hospital_name  = $row['hospital_name'];
+
+				$memo = $row['memo'];
+				$price = $row['prescription_price'];
+				$doctor = $row['doctor_name'];
+
+
+				echo "<div class='mb-4' id='accordion' role='tablist' aria-multiselectable='true'>
+				<div class='card'>
+					<div class='card-header' role='tab' id='$headingId'>
+					<h6 class='mb-0'>
+						<a data-toggle='collapse' data-parent='#accordion' href='#$collapseId' aria-expanded='true' aria-controls='$collapseId'>$prescription_date</a>
+					</h6>
+					</div>
+
+					<div id='$collapseId' class='collapse' role='tabpanel' aria-labelledby=$headingId>
+					<div class='card-body'>
+						<p class='card-hospital-name'> <span class='card-title'> Hospital Name </span> : $hospital_name</p>
+						<p class='card-disease-name'> <span class='card-title'> Disease Name </span> : $disease_name</p>
+						<p class='card-price'><span class='card-title'> Price </span> : $price <span class='card-title'> 원 </span></p>
+						<p class='card-doctor'><span class='card-title'> Doctor </span> : $doctor</p>
+						<p class='card-memo'><span class='card-title'> Memo </span> : $memo</p>
+					</div>
+					<a href='includes/delete_prescriptions.php?id=$prescription_id' style='left: 50%;
+						position: relative;
+						border: 1px solid;
+						padding: 5px;
+						bottom: 20px;'
+					>DELETE</a>
+					</div>
+				</div>
+				</div>";
 			}
 		}
 	?>
