@@ -72,9 +72,8 @@
     <h1 class="mt-4 mb-3">Hospitals
       <small>Reviews and ratings</small>
     </h1>
-		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Register</a></div>
-	</div>
+    </div>
+		
 
     <!-- Content Row -->
     <!-- Search Widget -->
@@ -85,32 +84,33 @@
         <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto"></form>
         <div class="row">
       <div class="col-lg-8 mb-4">
-        <form name="sentMessage" id="contactForm" novalidate>
+      <form action="medicines_write_action.php" method="POST">
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Drug Name:</label>
-              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
+              <input type="text" class="form-control" name="drug_name" required data-validation-required-message="Please enter drug name.">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Disease name:</label>
-              <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+              <input type="text" class="form-control" name="disease_name" required data-validation-required-message="Please enter disease name.">
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Grade:</label>
-              <input type="tel" class="form-control" id="phone" required data-validation-required-message="Please enter your phone number.">
+              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter grade.">
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Memo:</label>
-              <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none" ></textarea>
+              <textarea rows="10" cols="100" class="form-control" name="params_memo" required data-validation-required-message="Please enter memo" maxlength="999" style="resize:none" ></textarea>
             </div>
           </div>
+          <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
           <div id="success"></div>
           
         </form>
