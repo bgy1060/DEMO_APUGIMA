@@ -207,8 +207,7 @@
           <li>In order for people to record the hospital information they went to</li>
           <br>
         </ul>
-        <p>
-We hope that this site we have carefully created will become a site that many people need. We promise to provide convenient services to users by steadily managing and analyzing data so that more users can use it.</p>
+        <p>We hope that this site we have carefully created will become a site that many people need. We promise to provide convenient services to users by steadily managing and analyzing data so that more users can use it.</p>
       </div>
       <div class="col-lg-6">
         <img class="img-fluid rounded" src="img/bottom.jpg" alt="">
