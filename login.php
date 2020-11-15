@@ -74,12 +74,12 @@
  
         <form method='get' action='login_ok.php'>
                 <div class="form-group">
-                        <label style="margin-right:24%">Your email</label>
+                        <label style="margin-right:25.4%">Your ID</label>
                         <input style="width:30%;"class="form-control" name="id" type="text">
                 </div> <!-- form-group// -->
                 <div class="form-group">
-                        <label style="margin-right:22.3%">Your password</label>
-                        <input style="width:30%;"class="form-control" name="id" type="text">
+                        <label style="margin-right:22.3%">Your Password</label>
+                        <input style="width:30%;"class="form-control" name="pw" type="password">
                 </div> <!-- form-group// -->
                 <br>
                 <input class="btn btn-secondary" style="width:30%" type="submit" value="Login">

@@ -16,7 +16,7 @@
         //저장이 됬다면 (result = true) 가입 완료
         if($result) {
         ?>      <script>
-                alert('가입 되었습니다.');
+                alert('Sign up is complete.');
                 location.replace("./login.php");
                 </script>
  
