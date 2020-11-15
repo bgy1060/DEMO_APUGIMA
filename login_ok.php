@@ -21,7 +21,7 @@
                         $_SESSION['userid']=$row['uid'];
                         if(isset($_SESSION['userid'])){
                         ?>      <script>
-                                        alert("로그인 되었습니다.");
+                                        alert("Login was successful.");
                                         location.replace("./index.php");
                                 </script>
 <?php
@@ -33,7 +33,7 @@
  
                 else {
         ?>              <script>
-                                alert("아이디 혹은 비밀번호가 잘못되었습니다.");
+                                alert("ID or password is wrong.");
                                 history.back();
                         </script>
         <?php
@@ -43,7 +43,7 @@
  
                 else{
 ?>              <script>
-                        alert("계정이 없습니다. 회원가입을 해주세요.");
+                        alert("You do not have an account on this site. Please register as a member first.");
                         history.back();
                 </script>
 <?php
