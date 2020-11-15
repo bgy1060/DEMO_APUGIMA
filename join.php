@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,31 +68,30 @@
       </div>
     </div>
   </nav>
-        <div align='center' style="margin-top:7%">
-        <h4 class="card-title mb-4 mt-1">Sign in</h4>
+  <div align='center' style="margin-top:7%">
+        <h4 class="card-title mb-4 mt-1">Sign up</h4>
         <br>
- 
-        <form method='get' action='login_ok.php'>
-                <div class="form-group">
-                        <label style="margin-right:25.4%">Your ID</label>
-                        <input style="width:30%;"class="form-control" name="id" type="text">
-                </div> <!-- form-group// -->
-                <div class="form-group">
-                        <label style="margin-right:22.3%">Your Password</label>
-                        <input style="width:30%;"class="form-control" name="pw" type="password">
-                </div> <!-- form-group// -->
-                <br>
-                <input class="btn btn-secondary" style="width:30%" type="submit" value="Login">
-        </form>
-        <br />
-        <button class="btn btn-secondary" style="width:30%" id="join" onclick="location.href='./join.php'">Sign up</button>
- 
-        </div>
- 
+                <form method='get' action='join_action.php'>
+                        <div class="form-group">
+                                <label style="margin-right:24%">Your Name</label>
+                                <input style="width:30%;"class="form-control" name="name" type="text">
+                        </div> <!-- form-group// -->
 
-        
+                        <div class="form-group">
+                                <label style="margin-right:25.8%">Your ID</label>
+                                <input style="width:30%;"class="form-control" name="id" type="text">
+                        </div> <!-- form-group// -->
+
+                        <div class="form-group">
+                                <label style="margin-right:22.6%">Your Password</label>
+                                <input style="width:30%;"class="form-control" name="pw" type="password">
+                        </div> <!-- form-group// -->
+                        
+                        <br>
+                        <input class="btn btn-secondary" style="width:30%" type="submit" value="Register">
+                </form>
+        </div>
 </body>
- 
 </html>
 
 

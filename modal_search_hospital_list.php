@@ -1,3 +1,4 @@
+
 <?php
     include_once 'includes/dbh.inc.php';
     $hospital_name = $_GET['hospital_name'];
@@ -50,3 +51,4 @@
 </body>
 
 </html>
+

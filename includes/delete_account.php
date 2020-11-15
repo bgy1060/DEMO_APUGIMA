@@ -1,5 +1,6 @@
 <?php
 	include_once 'dbh.inc.php';
+
 	mysqli_query($conn, "BEGIN");
 	$sqls = ["DELETE FROM hospital_reviews WHERE uid='$_GET[id]';",
 						"DELETE FROM medicine_reviews WHERE uid='$_GET[id]';",
@@ -19,6 +20,5 @@
 			mysqli_query($conn, "ROLLBACK");
 			echo "<script>alert('Error occured. Try again.');</script>";
 	}
-
 ?>
 <meta http-equiv="refresh" content="0;url='../index.php'">

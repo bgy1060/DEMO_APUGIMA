@@ -1,3 +1,4 @@
+
 <?php
 	include_once 'dbh.inc.php';
     $sql = "DELETE FROM prescriptions WHERE prescription_id=$_GET[id];";
@@ -8,3 +9,4 @@
 		echo "<script>alert('Error occured. Try again.'); </script>";
 ?>
 <meta http-equiv="refresh" content="0;url='../prescriptions.php'">
+

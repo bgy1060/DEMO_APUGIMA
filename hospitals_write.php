@@ -1,15 +1,13 @@
 <?php
-
     include_once 'includes/dbh.inc.php';
     session_start();
     if(!isset($_SESSION['userid'])){?>
         <script>
-             alert("Please log in first.");
+             alert("로그인 먼저 해주세요.");
              location.replace("./login.php");
         </script>
     <?php
     }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,33 +28,28 @@
 
 </head>
 
-<body>
+<body style="height:100%;">
 
-
-   <!-- Navigation -->
-   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.php">Apugima</a>
-
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-
-            <a class="nav-link " href="hospitals.php">Hospital</a>
-
+            <a class="nav-link active" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
-
-						<a class="nav-link " href="columns.php">Column</a>
+						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
@@ -81,7 +74,6 @@
         </li>
 
 					</li>
-
         </ul>
       </div>
     </div>
@@ -91,46 +83,51 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">My Page
-      <small>My Review</small>
+		<div style="display: flex !important;">
+    <h1 class="mt-4 mb-3">Hospitals
+      <small>Reviews and ratings</small>
     </h1>
-    <!--
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Pricing</li>
-    </ol>-->
+            
+	</div>
 
-		<!-- Content Row -->
-    <div class="row">
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewh.php" class="btn"><h3>Hospital</h3>Manage my reviews</a>
-        </div>
-      </div>
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewm.php" class="btn btn-primary"><h3>Medicine</h3>Manage my reviews</a>
-        </div>
-      </div>
-    </div>
+    <!-- Content Row -->
+    <!-- Search Widget -->
 
-    <div class="card mb-4">
-      <div class="card-body" style="min-height:40vh;">
+    <div class="card mb-4"  >
+      <h5 class="card-header">Please write a review of the hospital you visited</h5>
+      <div class="card-body"  >
         <div class="row">
-					<?php
-						load_myreview_medicine($conn);
-					?>
-					<!--
-          <div class="col-lg-12">
-						<h3 class="card-title">Hospital Code</h3>
-            <p class="card-text">Review</p>
-						<a href="#" >삭제</a>
-          </div>-->
-        </div>
+      <div class="col-lg-8 mb-4">
+        <form action="hospital_write_action.php" method="POST">
+          <div class="control-group form-group">
+            <div class="controls" style="width:150%;">
+              <label>Hospital Name:</label>
+              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter your name.">
+              <p class="help-block"></p>
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls" style="width:150%;">
+              <label>Grade:</label>
+              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter your phone number.">
+            </div>
+          </div>
+          <div class="control-group form-group">
+            <div class="controls" style="width:150%;">
+              <label>Memo:</label>
+              <textarea style="height : 300px;" rows="10" cols="100" class="form-control" name="params_memo" maxlength="999" style="resize:none"></textarea>
+            </div>
+          </div>
+          <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
+          
+       
+        </for>
       </div>
+
     </div>
+      </div>
+
+	  </div>
 
   </div>
   <!-- /.container -->
@@ -140,7 +137,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-			<p class="m-0 text-center text-white">DEMO 2020</p>
+      <p class="m-0 text-center text-white">DEMO 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -149,28 +146,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<?php
-	  function load_myreview_medicine($conn){
-	    $ID=1;
-	    $sql = "SELECT A.medicine_name, B.medicine_review_id, B.memo, B.rate FROM medicines AS A, medicine_reviews AS B WHERE uid=$ID AND A.medicine_id=B.medicine_id;";
-	    $result = mysqli_query($conn, $sql);
-	    $resultCheck = mysqli_num_rows($result); //check if result is null
-	    if ($resultCheck >0){
-	      while ($row = mysqli_fetch_assoc($result)) { //for each row
-					$medicine_name = $row['medicine_name'];
-					$medicine_review_id = $row['medicine_review_id'];
-	        $memo = $row['memo'];
-	        $rate = $row['rate'];
-	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_name</h4>
-	          <p>\"$memo\" ($rate 점)<a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> DELETE</a></p>
-	        </div>";
-	      }
-	    }
-	    else {
-	      echo "<p>empty</p>";
-	    }
-	  }
-	?>
-
+	
 </body>
+
 </html>

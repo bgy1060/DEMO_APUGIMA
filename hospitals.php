@@ -1,5 +1,9 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+
+	session_start();
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +26,11 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+ <!-- Navigation -->
+ <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Apugima</a>
+      <a class="navbar-brand" href="index.php">Apugima</a>
+
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,12 +50,30 @@
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="#">Diary</a>
+
+              <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            </div>
-          </li>
+            
+          <li class="nav-item">
+          <?php
+                
+                if(isset($_SESSION['userid'])) {
+          ?>
+                        <a class="nav-link" href='./logout.php'>Logout</a>
+        <?php
+                }
+                else {
+        ?>              <a class="nav-link" href='./login.php'>Login</a>
+        <?php   }
+        ?>
+        </div>
+        </li>
+
+					</li>
+
+
         </ul>
       </div>
     </div>
@@ -65,7 +88,9 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Write a review</a></div>
+
+			<a href="hospitals_write.php" class="btn btn-primary">Write a review</a></div>
+
 		</div>
 
     <!-- Content Row -->
@@ -126,7 +151,9 @@
 				$hospital_name = $row1['hospital_name'];
 				$hospital_id = $row1['hospital_id'];
 				$avg_rate = number_format($row1['avg(B.rate)'],1);
+
 				echo "<h3><a href='hospital_detail.php?id=$hospital_id&rate=$avg_rate'>$hospital_name</a> 평점: $avg_rate</h3>";
+
 				$sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$hospital_id;";
 				$result2 = mysqli_query($conn, $sql2);
 				$resultCheck = mysqli_num_rows($result2);

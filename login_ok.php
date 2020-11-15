@@ -1,3 +1,4 @@
+
 <?php
  
         session_start();
@@ -18,15 +19,13 @@
                 $row=mysqli_fetch_assoc($result);
                 //비밀번호가 맞다면 세션 생성
                 if(trim($row['user_password'])==$pw){
-
                         $_SESSION['userid']=$row['uid'];
-
                         if(isset($_SESSION['userid'])){
                         ?>      <script>
-                                        alert("로그인 되었습니다.");
+                                        alert("Login was successful.");
                                         location.replace("./index.php");
                                 </script>
-        <?php
+<?php
                         }
                         else{
                                 echo "session fail";
@@ -35,7 +34,7 @@
  
                 else {
         ?>              <script>
-                                alert("아이디 혹은 비밀번호가 잘못되었습니다.");
+                                alert("ID or password is wrong.");
                                 history.back();
                         </script>
         <?php
@@ -44,8 +43,8 @@
         }
  
                 else{
-        ?>      <script>
-                        alert("계정이 없습니다. 회원가입을 해주세요.");
+?>              <script>
+                        alert("You do not have an account on this site. Please register as a member first.");
                         history.back();
                 </script>
 <?php
@@ -53,3 +52,5 @@
   
     
 ?>
+
+
