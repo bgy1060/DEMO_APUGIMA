@@ -1,5 +1,6 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+	session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,8 +23,8 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+   <!-- Navigation -->
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.php">Apugima</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,19 +39,34 @@
             <a class="nav-link active" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Column</a>
+						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="#">Diary</a>
-              <a class="dropdown-item" href="#">Prescriptions</a>
+              <a class="dropdown-item" href="diary.php">Diary</a>
+              <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="manage.php">Manage</a>
-            </div>
-          </li>
+							<a class="dropdown-item " href="manage.php">Manage</a>
+            
+          <li class="nav-item">
+          <?php
+                
+                if(isset($_SESSION['userid'])) {
+          ?>
+                        <a class="nav-link" href='./logout.php'>Logout</a>
+        <?php
+                }
+                else {
+        ?>              <a class="nav-link" href='./login.php'>Login</a>
+        <?php   }
+        ?>
+        </div>
+        </li>
+
+					</li>
         </ul>
       </div>
     </div>

@@ -32,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="hospitals.php">Hospital</a>
+            <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
