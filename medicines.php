@@ -1,6 +1,8 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+
 	session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,6 +48,7 @@
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
@@ -81,6 +84,7 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
+
 			<a href="medicines_write.php" class="btn btn-primary">Write a review</a></div>
 		</div>
 

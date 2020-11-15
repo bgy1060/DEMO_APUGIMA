@@ -22,10 +22,12 @@
 
 <body>
 
+
  <!-- Navigation -->
  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.php">Apugima</a>
+
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,6 +40,7 @@
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
+
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
@@ -45,6 +48,7 @@
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
@@ -147,7 +151,9 @@
 	            $hospital_name = $row1['hospital_name'];
 	            $hospital_id = $row1['hospital_id'];
 							$avg_rate = number_format($row1['avg(B.rate)'],1);
-	            echo "<h3>$hospital_name 평점: $avg_rate</h3>";
+
+	            echo "<h3>$hospital_name Rate: $avg_rate</h3>";
+
 	            $sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$hospital_id;";
 	            $result2 = mysqli_query($conn, $sql2);
 	            $resultCheck = mysqli_num_rows($result2);
