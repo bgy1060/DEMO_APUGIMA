@@ -1,5 +1,13 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+	session_start();
+	if(!isset($_SESSION['userid'])){?>
+			<script>
+					 alert("Please log in first.");
+					 location.replace("./login.php");
+			</script>
+	<?php
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +73,7 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Write a review</a></div>
+			<a href="hospitals_write.php" class="btn btn-primary">Write a review</a></div>
 		</div>
 
     <!-- Content Row -->
@@ -109,7 +117,7 @@
 		$result = mysqli_query($conn, $sql);
 		if ($result){
 			$row = mysqli_fetch_assoc($result);
-			echo "<h3>$row[hospital_name] Rate: $_GET[rate]</h3>";
+			echo "<h3>$row[hospital_name]</h3>";
 			echo "<p>Hospital type: $row[hospital_type]<br>";
 			echo "Address: $row[hospital_address]<br>";
 			echo "Contact: $row[hospital_number]<br></p>";

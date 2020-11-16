@@ -60,10 +60,10 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -90,13 +90,6 @@
     <h1 class="mt-4 mb-3">My Page
       <small>My Review</small>
     </h1>
-    <!--
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Pricing</li>
-    </ol>-->
 
 		<!-- Content Row -->
     <div class="row">
@@ -116,12 +109,6 @@
       <div class="card-body" style="min-height:40vh;">
         <div class="row">
 
-					<!--
-          <div class="col-lg-12">
-						<h3 class="card-title">Hospital Code</h3>
-            <p class="card-text">Review</p>
-						<a href="#" >삭제</a>
-          </div>-->
         </div>
       </div>
     </div>

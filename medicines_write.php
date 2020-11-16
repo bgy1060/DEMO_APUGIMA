@@ -3,7 +3,7 @@
     session_start();
     if(!isset($_SESSION['userid'])){?>
         <script>
-             alert("로그인 먼저 해주세요.");
+             alert("Please log in first.");
              location.replace("./login.php");
         </script>
     <?php
@@ -57,10 +57,10 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item " href="manage.php">Manage</a>
-            
+
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -88,7 +88,7 @@
       <small>Reviews and ratings</small>
     </h1>
     </div>
-		
+
 
     <!-- Content Row -->
     <!-- Search Widget -->
@@ -127,7 +127,7 @@
           </div>
           <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
           <div id="success"></div>
-          
+
         </form>
       </div>
 
@@ -153,7 +153,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	
+
 </body>
 
 </html>

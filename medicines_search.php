@@ -1,7 +1,13 @@
 <?php
 	include_once 'includes/dbh.inc.php';
-
 	session_start();
+	if(!isset($_SESSION['userid'])){?>
+			<script>
+					 alert("Please log in first.");
+					 location.replace("./login.php");
+			</script>
+	<?php
+	}
 
 ?>
 <!DOCTYPE html>
@@ -55,10 +61,10 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -83,11 +89,11 @@
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
-    <h1 class="mt-4 mb-3">Hospitals
+    <h1 class="mt-4 mb-3">Medicines
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Write a review</a></div>
+			<a href="medicines_write.php" class="btn btn-primary">Write a review</a></div>
 		</div>
 
     <!-- Content Row -->
@@ -107,14 +113,6 @@
 				<?php
 					load_medicine_reviews_searched($conn);
 				?>
-				<!--
-				<div class="media mb-4">
-					<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-					<div class="media-body">
-						<h5 class="mt-0">Commenter Name</h5>리뷰내용
-					</div>
-				</div>
-			-->
 
 				<hr>
 				<div style='text-align:center;'><a href="medicines.php">Back</a></div>
@@ -142,22 +140,23 @@
 	<?php
 	  function load_medicine_reviews_searched($conn){
 			$input = $_GET['input'];
-	    $sql0 = "SELECT medicine_id FROM medicines WHERE medicine_name LIKE '%$input%' OR medicine_symptom LIKE '%$input%';";
+	    $sql0 = "SELECT medicine_id, medicine_name FROM medicines WHERE medicine_name LIKE '%$input%' OR medicine_symptom LIKE '%$input%';";
 	    $result0 = mysqli_query($conn, $sql0);
 	    $resultCheck = mysqli_num_rows($result0);
 	    if ($resultCheck >0){
 	      while ($row0 = mysqli_fetch_assoc($result0)){
+					$medicine_name = $row0['medicine_name'];
 	        $target_id = $row0['medicine_id'];
-	        $sql1 = "SELECT A.medicine_name, A.medicine_id, avg(B.rate) FROM medicines AS A, medicine_reviews AS B WHERE B.medicine_id='$target_id' AND A.medicine_id=B.medicine_id GROUP BY B.medicine_id;";
+
+	        $sql1 = "SELECT A.medicine_id, avg(B.rate) FROM medicines AS A, medicine_reviews AS B WHERE B.medicine_id='$target_id' AND A.medicine_id=B.medicine_id GROUP BY B.medicine_id;";
 	        $result1 = mysqli_query($conn, $sql1);
 	        $resultCheck = mysqli_num_rows($result1); //check if result is null
 	        if ($resultCheck >0){
 	          while ($row1 = mysqli_fetch_assoc($result1)) { //for each row
-	            $medicine_name = $row1['medicine_name'];
-	            $medicine_id = $row1['medicine_id'];
 							$avg_rate = number_format($row1['avg(B.rate)'],1);
-	            echo "<h3>$medicine_name 평점: $avg_rate</h3>";
-	            $sql2 = "SELECT A.user_id, B.memo FROM users AS A, medicine_reviews AS B WHERE A.uid=B.uid AND medicine_id='$medicine_id';";
+	            echo "<h3>$medicine_name Rate: $avg_rate</h3>";
+
+							$sql2 = "SELECT A.user_id, B.memo FROM users AS A, medicine_reviews AS B WHERE A.uid=B.uid AND medicine_id='$target_id';";
 	            $result2 = mysqli_query($conn, $sql2);
 	            $resultCheck = mysqli_num_rows($result2);
 	            while ($row2 = mysqli_fetch_assoc($result2)){
@@ -172,7 +171,7 @@
 	          }
 	        }
 					else {
-						echo "<h3 style='text-align: center; padding:100px'>NO REVIEW WITH THE NAME OR TYPE $input</h3>";
+						echo "<br><h3>$medicine_name NO REVIEW YET</h3>";
 					}
 	      }
 	    }
