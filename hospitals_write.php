@@ -102,14 +102,20 @@
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Hospital Name:</label>
-              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter your name.">
+              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter the name.">
               <p class="help-block"></p>
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Grade:</label>
-              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter your phone number.">
+              <label>Rate:</label>
+              <div>
+                <input type="radio" name="hospital_grade" value="1"> ★
+                <input type="radio" name="hospital_grade" value="2"> ★★
+                <input type="radio" name="hospital_grade" value="3"> ★★★
+                <input type="radio" name="hospital_grade" value="4"> ★★★★
+                <input type="radio" name="hospital_grade" value="5"> ★★★★★
+              </div>
             </div>
           </div>
           <div class="control-group form-group">

@@ -140,7 +140,7 @@
 	        $sql1 = "SELECT B.hospital_id, avg(B.rate) FROM hospitals AS A, hospital_reviews AS B WHERE B.hospital_id=$target_id AND A.hospital_id=B.hospital_id GROUP BY B.hospital_id;";
 	        $result1 = mysqli_query($conn, $sql1);
 	        $resultCheck = mysqli_num_rows($result1); //check if result is null
-					if ($resultCheck >0)
+					if ($resultCheck >0){
 						while ($row1 = mysqli_fetch_assoc($result1)) { //for each row
 							$avg_rate = number_format($row1['avg(B.rate)'],1);
 							echo "<br><h3><a href='hospital_detail.php?id=$target_id'>$hospital_name</a> Rate: $avg_rate</h3>";
@@ -148,8 +148,7 @@
 		          $sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$target_id;";
 		          $result2 = mysqli_query($conn, $sql2);
 		          $resultCheck = mysqli_num_rows($result2);
-							if ($resultCheck >0){
-								while ($row2 = mysqli_fetch_assoc($result2)){
+							while ($row2 = mysqli_fetch_assoc($result2)){
 			            $user_id = $row2['user_id'];
 			            $memo = $row2['memo'];
 			            echo "<div class='media mb-4'><img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>
@@ -157,9 +156,9 @@
 			                          <h5 class='mt-0'>$user_id</h5>$memo
 			                        </div>
 			                      </div>";
-		            }
 		          }
 		        }
+					}
 					else {
 						echo "<br><h3><a href='hospital_detail.php?id=$target_id'>$hospital_name</a> NO REVIEW YET</h3>";
 					}
