@@ -1,5 +1,6 @@
 
 <?php
+	include_once 'includes/dbh.inc.php';
     session_start();
     if(!isset($_SESSION['userid'])){?>
         <script>
@@ -9,8 +10,7 @@
     <?php
     }
 ?>
-	include_once 'includes/dbh.inc.php';
-?>
+
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
