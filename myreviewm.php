@@ -156,8 +156,8 @@
 	        $rate = $row['rate'];
 	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_name</h4>
 	          <p>\"$memo\" (Rate: $rate)
-            <a href='includes/modify_myreviewh.php'?rid=$medicine_review_id'> MODIFY </a> /
-            <a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> DELETE</a></p>
+            <a href='modify_myreviewh.php?rid=$medicine_review_id'> MODIFY </a> /
+            <a href='delete_myreviewm.php?rid=$medicine_review_id'> DELETE</a></p>
 	        </div>";
 	      }
 	    }
