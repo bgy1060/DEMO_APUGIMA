@@ -25,26 +25,33 @@
       <script type="text/javascript">
         google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawStuff);
-
         function drawStuff() {
           var data = new google.visualization.arrayToDataTable([
-            <?php
-            echo "['Hospital Name', 'Rate', { role: 'annotation' }]";
-            $sql = "SELECT A.hospital_name, AVG(B.rate), RANK() OVER ( ORDER BY AVG(B.rate) DESC) AS ranking
-                      FROM hospitals AS A, hospital_reviews AS B
-                      WHERE A.hospital_id=B.hospital_id
-                      GROUP BY B.hospital_id
-                      ORDER BY ranking LIMIT 10;";
-            $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_assoc($result)) { //for each row
-                echo ", [";
-                echo "\"", $row['hospital_name'], "\", ", $row['AVG(B.rate)'],",", $row['ranking'];
-                echo "]";
-            }
-            ?>
+						<?php
+						  echo "['Hospital Name', 'Rate', { role: 'annotation' }]";
+							if (!isset($_GET['chartType']) || $_GET['chartType']=='total')
+							  $sql = "SELECT A.hospital_name, AVG(B.rate), RANK() OVER ( ORDER BY AVG(B.rate) DESC) AS ranking
+							              FROM hospitals AS A, hospital_reviews AS B
+							              WHERE A.hospital_id=B.hospital_id
+							              GROUP BY B.hospital_id
+							              ORDER BY ranking LIMIT 10;";
+							else
+								$sql = "SELECT A.hospital_name, AVG(B.rate), RANK() OVER ( ORDER BY AVG(B.rate) DESC) AS ranking
+														FROM hospitals AS A, hospital_reviews AS B
+														WHERE A.hospital_id=B.hospital_id AND A.hospital_type='$_GET[chartType]'
+														GROUP BY B.hospital_id
+														ORDER BY ranking LIMIT 10;";
+						  $result = mysqli_query($conn, $sql);
+						  while ($row = mysqli_fetch_assoc($result)) { //for each row
+						      echo ", [";
+						      echo "\"", $row['hospital_name'], "\", ", $row['AVG(B.rate)'],",", $row['ranking'];
+						      echo "]";
+						    }
+						?>
           ]);
 
           var options = {
+						chart: { title: <?php echo "\"", $_GET['chartType'],"\"" ?>},
             legend: { position: 'none', maxLines: 5},
             bars: 'horizontal', // Required for Material Bar Charts.
             axes: {
@@ -61,6 +68,7 @@
           chart.draw(data, options);
         };
       </script>
+
  <!-- Navigation -->
  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -138,7 +146,22 @@
     <div class="card mb-4">
       <h5 class="card-header">Ranking</h5>
       <div class="card-body" >
+				<form class="m-0 text-center" method="get">
+				  <select name="chartType" onchange="this.form.submit()">
+				    <option value="none">=== Choose ===</option>
+						<option value="total">Total</option>
+				    <option value="종합병원">종합병원</option>
+				    <option value="치과병원">치과병원</option>
+				    <option value="일반병원">일반병원</option>
+				    <option value="한방병원">한방병원</option>
+						<option value="일반요양병원">일반요양병원</option>
+				    <option value="정신병원">정신병원</option>
+						<option value="노인요양병원">노인요양병원</option>
+						<option value="장애인의료재활시설">장애인의료재활시설</option>
+				  </select>
+				</form>
 				<!-- Comment with nested comments -->
+				<br><br>
         <div id="chartdiv" style='height:500px;'></div>
 				<hr>
       </div>
@@ -159,8 +182,13 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script>
+	function changeSelect(){
+		var select = document.getElementById("chartType");
+		var selectValue = select.options[select.selectedIndex].value;
 
-
+	}
+	</script>
 </body>
 
 </html>
