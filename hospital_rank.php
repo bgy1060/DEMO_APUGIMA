@@ -1,5 +1,6 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+	session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,12 +18,49 @@
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-
 </head>
 
 <body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawStuff);
 
+        function drawStuff() {
+          var data = new google.visualization.arrayToDataTable([
+            <?php
+            echo "['Hospital Name', 'Rate', { role: 'annotation' }]";
+            $sql = "SELECT A.hospital_name, AVG(B.rate), RANK() OVER ( ORDER BY AVG(B.rate) DESC) AS ranking
+                      FROM hospitals AS A, hospital_reviews AS B
+                      WHERE A.hospital_id=B.hospital_id
+                      GROUP BY B.hospital_id
+                      ORDER BY ranking LIMIT 10;";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) { //for each row
+                echo ", [";
+                echo "\"", $row['hospital_name'], "\", ", $row['AVG(B.rate)'],",", $row['ranking'];
+                echo "]";
+            }
+            ?>
+          ]);
 
+          var options = {
+            legend: { position: 'none', maxLines: 5},
+            bars: 'horizontal', // Required for Material Bar Charts.
+            axes: {
+              x: {
+                0: { side: 'top', label: 'Rate'} // Top x-axis.
+              }
+            },
+            hAxis: {maxValue: 5},
+            textStyle: { fontSize:15},
+            bar: { groupWidth: "90%" },
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('chartdiv'));
+          chart.draw(data, options);
+        };
+      </script>
  <!-- Navigation -->
  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -50,7 +88,6 @@
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
-
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
@@ -97,24 +134,13 @@
 
     <!-- Content Row -->
     <!-- Search Widget -->
+
     <div class="card mb-4">
-			<h5 class="card-header" style="display: flex !important;">Search
-				<a href='hospital_rank.php' class="ml-auto">See Ranking ▷</a>
-			</h5>
-      <div class="card-body">
-				<form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
-          <input type="text" class="form-control" name="input" placeholder="Search by hospital name or type...">
-          <span class="input-group-append">
-            <input type="submit" class="btn btn-secondary" value="Go !" ></input>
-          </span>
-        </form>
-				<hr>
+      <h5 class="card-header">Ranking</h5>
+      <div class="card-body" >
 				<!-- Comment with nested comments -->
-				<?php
-					load_hospital_reviews_searched($conn);
-				?>
+        <div id="chartdiv" style='height:500px;'></div>
 				<hr>
-				<div style='text-align:center;'><a href="hospitals.php">Back</a></div>
       </div>
 
 	  </div>
@@ -122,12 +148,10 @@
   </div>
   <!-- /.container -->
 
-
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-			<p class="m-0 text-center text-white">DEMO 2020</p>
+      <p class="m-0 text-center text-white">DEMO 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -136,49 +160,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<?php
-	  function load_hospital_reviews_searched($conn){
-			$input = $_GET['input'];
-	    $sql0 = "SELECT hospital_id, hospital_name FROM hospitals WHERE hospital_name LIKE '%$input%' OR hospital_type LIKE '%$input%';";
-	    $result0 = mysqli_query($conn, $sql0);
-	    $resultCheck = mysqli_num_rows($result0);
-	    if ($resultCheck >0){ // if found any hospital with that name
-	      while ($row0 = mysqli_fetch_assoc($result0)){
-					$hospital_name = $row0['hospital_name'];
-	        $target_id = $row0['hospital_id'];
 
-	        $sql1 = "SELECT B.hospital_id, avg(B.rate) FROM hospitals AS A, hospital_reviews AS B WHERE B.hospital_id=$target_id AND A.hospital_id=B.hospital_id GROUP BY B.hospital_id;";
-	        $result1 = mysqli_query($conn, $sql1);
-	        $resultCheck = mysqli_num_rows($result1); //check if result is null
-					if ($resultCheck >0){
-						while ($row1 = mysqli_fetch_assoc($result1)) { //for each row
-							$avg_rate = number_format($row1['avg(B.rate)'],1);
-							echo "<br><h3><a href='hospital_detail.php?id=$target_id'>$hospital_name</a> Rate: $avg_rate</h3>";
-
-		          $sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$target_id;";
-		          $result2 = mysqli_query($conn, $sql2);
-		          $resultCheck = mysqli_num_rows($result2);
-							while ($row2 = mysqli_fetch_assoc($result2)){
-			            $user_id = $row2['user_id'];
-			            $memo = $row2['memo'];
-			            echo "<div class='media mb-4'><img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>
-			                        <div class='media-body'>
-			                          <h5 class='mt-0'>$user_id</h5>$memo
-			                        </div>
-			                      </div>";
-		          }
-		        }
-					}
-					else {
-						echo "<br><h3><a href='hospital_detail.php?id=$target_id'>$hospital_name</a> NO REVIEW YET</h3>";
-					}
-	      }
-	    }
-			else {
-				echo "<h3 style='text-align: center;padding:100px'>NO HOSPITAL WITH THE NAME OR TYPE $input</h3>";
-			}
-	}
-	?>
 </body>
 
 </html>

@@ -94,17 +94,17 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-
 			<a href="hospitals_write.php" class="btn btn-primary">Write a review</a></div>
-
 		</div>
 
     <!-- Content Row -->
     <!-- Search Widget -->
 
     <div class="card mb-4">
-      <h5 class="card-header">Search</h5>
-      <div class="card-body">
+      <h5 class="card-header" style="display: flex !important;">Search
+				<a href='hospital_rank.php' class="ml-auto">See Ranking ▷</a>
+			</h5>
+      <div class="card-body" >
         <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
           <input type="text" class="form-control" name="input" placeholder="Search by hospital name or type...">
           <span class="input-group-append">
