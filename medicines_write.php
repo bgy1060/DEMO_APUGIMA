@@ -88,8 +88,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="covid.php">Covid19</a>
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Covid19
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
+              <a class="dropdown-item" href="covidprogress.php">Progress</a>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="hospitals.php">Hospital</a>
@@ -164,7 +171,7 @@
 			        <span style ="float:left; margin-left:1%;"  class="input-group-append">
 					      <input type="button" onclick="openChild('modal_search_disease.php', this);" class="btn btn-secondary" value="Search" ></input>
 		        	</span>
-      
+
             </div>
           </div>
           <br><br>
