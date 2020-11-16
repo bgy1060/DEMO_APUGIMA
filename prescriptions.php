@@ -250,7 +250,10 @@
     <!-- /.row -->
 	<?php
     	$user_id = $_SESSION['userid'];
-		$sql = "SELECT * FROM prescriptions
+		$sql = "SELECT *,
+				SUM(prescription_price) OVER (ORDER BY prescription_date ROWS
+                    BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as total
+				FROM prescriptions
 				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id
 				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id
 				WHERE uid=$user_id
@@ -273,6 +276,7 @@
 
 				$memo = $row['memo'];
 				$price = $row['prescription_price'];
+				$price_total = $row['total'];
 				$doctor = $row['doctor_name'];
 
 
@@ -289,6 +293,7 @@
 						<p class='card-hospital-name'> <span class='card-title'> Hospital Name </span> : $hospital_name</p>
 						<p class='card-disease-name'> <span class='card-title'> Disease Name </span> : $disease_name</p>
 						<p class='card-price'><span class='card-title'> Price </span> : $price <span class='card-title'> 원 </span></p>
+						<p class='card-price'><span class='card-title'> Total Price </span> : $price_total <span class='card-title'> 원 </span></p>
 						<p class='card-doctor'><span class='card-title'> Doctor </span> : $doctor</p>
 						<p class='card-memo'><span class='card-title'> Memo </span> : $memo</p>
 					</div>
