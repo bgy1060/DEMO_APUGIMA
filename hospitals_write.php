@@ -9,6 +9,56 @@
     <?php
     }
 ?>
+
+<script>
+	
+	window.onload = function() {
+		checkDiseaseSession();
+		checkHospitalSession();
+	}
+	function openChild(url, field) {
+		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";  
+		window.name = "ori_window";
+		window.open(url, 'new_window', opt);
+	}
+	function checkDiseaseSession(){
+		const disease = localStorage.getItem("pre_disease");
+		if(disease == null || disease == undefined) return;
+		document.getElementById("pre_disease").value = disease; //일반적인 방법
+	}
+	function checkHospitalSession(){
+		const hospital = localStorage.getItem("pre_hospital");
+		if(hospital == null || hospital == undefined) return;
+		document.getElementById("pre_hospital").value = hospital; //일반적인 방법
+	}
+
+	function checkForm() {
+		var hospital = document.sendPrescription.params_hosptial;
+		// 병원 입력 유무 체크
+		if(hospital.value == '' ) {
+			window.alert("Please enter hospital");
+			return false; // 병원 입력이 안되어 있다면 submint 이벤트를 중지, 페이지 reload
+		}
+		var disease = document.sendPrescription.params_disease;
+		// 병 입력 유무 체크
+		if(disease.value == ''){
+			window.alert("Please enter disease name");
+			window.reload();
+			return false;
+		}
+		// TODO: 날짜 입력 유무 체크 -> 실패
+		// var date = document.sendPrescription.params_date;
+		// if(strtotime(date) == 0){
+		// 	window.alert("Please enter date");
+		// 	window.reload();
+		// 	return false;
+		// }
+
+	}
+
+</script>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,9 +151,14 @@
         <form action="hospital_write_action.php" method="POST">
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Hospital Name:</label>
-              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter your name.">
-              <p class="help-block"></p>
+              <label >Hospital Name:</label>
+              <br>
+              <input style ="width:92%; float:left;" readonly type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
+			        <span style ="float:left; margin-left:1%;" class="input-group-append">
+					      <input type="button" onclick="openChild('modal_search_hospital.php', this);" class="btn btn-secondary" value="Search" ></input>
+			        </span> 
+			        <p class="help-block"></p>
+              <br>
             </div>
           </div>
           <div class="control-group form-group">
