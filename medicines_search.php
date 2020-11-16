@@ -101,8 +101,8 @@
     <div class="card mb-4">
       <h5 class="card-header">Search</h5>
       <div class="card-body">
-        <form action='medicines_search.php' method='get' class="input-group ml-auto mr-auto" style="width:50%;">
-          <input type="text" class="form-control" name="input" placeholder="Search by hospital name or type...">
+        <form action='medicines_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
+          <input type="text" class="form-control" name="input" placeholder="Search by medicine name or symptom....">
           <span class="input-group-append">
             <input type="submit" class="btn btn-secondary" value="Go !" ></input>
           </span>
