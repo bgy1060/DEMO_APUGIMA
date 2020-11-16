@@ -40,10 +40,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Covid19
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
+              <a class="dropdown-item" href="covidprogress.php">Progress</a>
+            </div>
+          </li>
           <li class="nav-item">
-
             <a class="nav-link " href="hospitals.php">Hospital</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
@@ -58,12 +66,13 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
-              <a class="dropdown-item" href="myreview.php">My Review</a>
+              <a class="dropdown-item active" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -73,11 +82,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
-
         </ul>
       </div>
     </div>
@@ -90,13 +95,6 @@
     <h1 class="mt-4 mb-3">My Page
       <small>My Review</small>
     </h1>
-    <!--
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Pricing</li>
-    </ol>-->
 
 		<!-- Content Row -->
     <div class="row">
@@ -116,12 +114,6 @@
       <div class="card-body" style="min-height:40vh;">
         <div class="row">
 
-					<!--
-          <div class="col-lg-12">
-						<h3 class="card-title">Hospital Code</h3>
-            <p class="card-text">Review</p>
-						<a href="#" >삭제</a>
-          </div>-->
         </div>
       </div>
     </div>

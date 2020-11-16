@@ -4,7 +4,7 @@
 
     include_once 'includes/dbh.inc.php';
 
-    $hospital_name = trim($_POST['hospital_name']);
+    $hospital_name = trim($_POST['params_hosptial']);
     $hospital_grade = (int)trim($_POST['hospital_grade']);
     $user_id = $_SESSION['userid'];
 

@@ -41,15 +41,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Covid19
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
-              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
-              <a class="dropdown-item" href="covidprogress.php">Progress</a>
-            </div>
+          <li class="nav-item active">
+            <a class="nav-link" href="covid.php">Covid19</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="hospitals.php">Hospital</a>
@@ -60,8 +53,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
@@ -69,22 +62,25 @@
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
-							<a class="dropdown-item active" href="manage.php">Manage</a>
-            </div>
-        	</li>
+							<a class="dropdown-item" href="manage.php">Manage</a>
+
           <li class="nav-item">
           <?php
-
-                if(isset($_SESSION['userid'])) {
+            if(isset($_SESSION['userid'])) {
           ?>
-                        <a class="nav-link" href='./logout.php'>Logout</a>
-        <?php
-                }
-                else {
-        ?>              <a class="nav-link" href='./login.php'>Login</a>
-        <?php   }
+          <a class="nav-link" href='./logout.php'>Logout</a>
+            <?php
+          }
+          else {
+            ?> <a class="nav-link" href='./login.php'>Login</a>
+          <?php
+          }
         ?>
+        </div>
         </li>
+
+					</li>
+
         </ul>
       </div>
     </div>
@@ -94,30 +90,24 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">My Page
-      <small>Manage</small>
+    <h1 class="mt-4 mb-3">Covid19
     </h1>
 
 		<!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <!-- /.row -->
-    <div class="card mb-4">
-      <div class="card-body" style="min-height:40vh;">
-        <h5>Change your password</h5><br>
-        <form action='includes/change_password.php' method='get' class="input-group" style="width:50%;">
-          <input type="text" class="form-control" name="newpw" placeholder="">
-          <span class="input-group-append">
-            <input type="submit" class="btn btn-secondary" value="Change" ></input>
-          </span>
-        </form>
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <h4>빈칸~~</h4>
+        <br>
+        <div class="card-body">
 
-        <br><br><br>
-        <?php
-        $id='';
-        echo "<h5><a href='includes/delete_account.php'>Delete account</a></h5>";
-        ?>
+
+        </div>
+
       </div>
+
     </div>
+    <!-- /.row -->
 
   </div>
   <!-- /.container -->

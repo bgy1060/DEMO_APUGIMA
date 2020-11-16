@@ -1,5 +1,13 @@
 <?php
 	include_once 'includes/dbh.inc.php';
+	session_start();
+	if(!isset($_SESSION['userid'])){?>
+			<script>
+					 alert("Please log in first.");
+					 location.replace("./login.php");
+			</script>
+	<?php
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +39,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Covid19
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
+              <a class="dropdown-item" href="covidprogress.php">Progress</a>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" href="hospitals.php">Hospital</a>
           </li>
@@ -49,8 +67,21 @@
               <a class="dropdown-item" href="#">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            </div>
-          </li>
+						</div>
+        	</li>
+          <li class="nav-item">
+          <?php
+
+                if(isset($_SESSION['userid'])) {
+          ?>
+                        <a class="nav-link" href='./logout.php'>Logout</a>
+        <?php
+                }
+                else {
+        ?>              <a class="nav-link" href='./login.php'>Login</a>
+        <?php   }
+        ?>
+        </li>
         </ul>
       </div>
     </div>
@@ -65,7 +96,7 @@
       <small>Reviews and ratings</small>
     </h1>
 		<div class="mt-auto mb-3 ml-auto">
-			<a href="#" class="btn btn-primary">Write a review</a></div>
+			<a href="hospitals_write.php" class="btn btn-primary">Write a review</a></div>
 		</div>
 
     <!-- Content Row -->
@@ -109,7 +140,7 @@
 		$result = mysqli_query($conn, $sql);
 		if ($result){
 			$row = mysqli_fetch_assoc($result);
-			echo "<h3>$row[hospital_name] Rate: $_GET[rate]</h3>";
+			echo "<h3>$row[hospital_name]</h3>";
 			echo "<p>Hospital type: $row[hospital_type]<br>";
 			echo "Address: $row[hospital_address]<br>";
 			echo "Contact: $row[hospital_number]<br></p>";

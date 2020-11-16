@@ -36,6 +36,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Covid19
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
+              <a class="dropdown-item" href="covidprogress.php">Progress</a>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link active" href="hospitals.php">Hospital</a>
           </li>
@@ -55,10 +65,11 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+						</div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -68,12 +79,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
-
-
         </ul>
       </div>
     </div>
@@ -110,14 +116,6 @@
 				<?php
 					load_hospital_reviews($conn);
 				?>
-				<!--
-				<div class="media mb-4">
-					<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-					<div class="media-body">
-						<h5 class="mt-0">Commenter Name</h5>리뷰내용
-					</div>
-				</div>
-			-->
 
 				<hr>
       </div>
@@ -152,7 +150,7 @@
 				$hospital_id = $row1['hospital_id'];
 				$avg_rate = number_format($row1['avg(B.rate)'],1);
 
-				echo "<h3><a href='hospital_detail.php?id=$hospital_id&rate=$avg_rate'>$hospital_name</a> 평점: $avg_rate</h3>";
+				echo "<br><h3><a href='hospital_detail.php?id=$hospital_id'>$hospital_name</a> Rate: $avg_rate</h3>";
 
 				$sql2 = "SELECT A.user_id, B.memo FROM users AS A, hospital_reviews AS B WHERE A.uid=B.uid AND hospital_id=$hospital_id;";
 				$result2 = mysqli_query($conn, $sql2);
@@ -172,33 +170,6 @@
 			echo "<h3 style='text-align: center;'>NO REVIEW</h3>";
 		}
 	}
-	/*
-		function load_hopsital_reviews($conn){
-			$sql1 = "SELECT A.hospital_name, A.hospital_id, avg(B.rate) FROM hospitals AS A, hospital_reviews AS B WHERE A.hospital_id=B.hospital_id GROUP BY B.hospital_id;";
-			$result1 = mysqli_query($conn, $sql1);
-			$resultCheck = mysqli_num_rows($result1); //check if result is null
-			if ($resultCheck >0){
-				while ($row1 = mysqli_fetch_assoc($result1)) { //for each row
-					$hospital_name = $row1['hospital_name'];
-					$hospital_id = $row1['hospital_id'];
-					$avg_rate = number_format($row1['avg(B.rate)'],1);
-					echo "<h3>$hospital_name 평점: $avg_rate</h3>";
-					$sql2 = "SELECT uid, memo FROM hospital_reviews WHERE hospital_id=$hospital_id;";
-					$result2 = mysqli_query($conn, $sql2);
-					$resultCheck = mysqli_num_rows($result2);
-					while ($row2 = mysqli_fetch_assoc($result2)){
-						$uid = $row2['uid'];
-						$memo = $row2['memo'];
-						echo "<div class='media mb-4'><img class='d-flex mr-3 rounded-circle' src='http://placehold.it/50x50' alt=''>
-											<div class='media-body'>
-												<h5 class='mt-0'>$uid</h5>$memo
-											</div>
-										</div>";
-					}
-				}
-			}
-		}
-		*/
 	?>
 </body>
 

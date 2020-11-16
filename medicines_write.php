@@ -3,12 +3,61 @@
     session_start();
     if(!isset($_SESSION['userid'])){?>
         <script>
-             alert("로그인 먼저 해주세요.");
+             alert("Please log in first.");
              location.replace("./login.php");
         </script>
     <?php
     }
 ?>
+
+<script>
+
+	window.onload = function() {
+		checkDiseaseSession();
+		checkHospitalSession();
+	}
+	function openChild(url, field) {
+		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";
+		window.name = "ori_window";
+		window.open(url, 'new_window', opt);
+	}
+	function checkDiseaseSession(){
+		const disease = localStorage.getItem("pre_disease");
+		if(disease == null || disease == undefined) return;
+		document.getElementById("pre_disease").value = disease; //일반적인 방법
+	}
+	function checkHospitalSession(){
+		const hospital = localStorage.getItem("pre_hospital");
+		if(hospital == null || hospital == undefined) return;
+		document.getElementById("pre_hospital").value = hospital; //일반적인 방법
+	}
+
+	function checkForm() {
+		var hospital = document.sendPrescription.params_hosptial;
+		// 병원 입력 유무 체크
+		if(hospital.value == '' ) {
+			window.alert("Please enter hospital");
+			return false; // 병원 입력이 안되어 있다면 submint 이벤트를 중지, 페이지 reload
+		}
+		var disease = document.sendPrescription.params_disease;
+		// 병 입력 유무 체크
+		if(disease.value == ''){
+			window.alert("Please enter disease name");
+			window.reload();
+			return false;
+		}
+		// TODO: 날짜 입력 유무 체크 -> 실패
+		// var date = document.sendPrescription.params_date;
+		// if(strtotime(date) == 0){
+		// 	window.alert("Please enter date");
+		// 	window.reload();
+		// 	return false;
+		// }
+
+	}
+
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +88,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Covid19
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item" href="covidimport.php">Imported cases</a>
+              <a class="dropdown-item" href="covidprogress.php">Progress</a>
+            </div>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
@@ -57,10 +116,11 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item " href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -70,10 +130,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
         </ul>
       </div>
     </div>
@@ -84,17 +141,17 @@
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
-    <h1 class="mt-4 mb-3">Hospitals
+    <h1 class="mt-4 mb-3">Medicines
       <small>Reviews and ratings</small>
     </h1>
     </div>
-		
+
 
     <!-- Content Row -->
     <!-- Search Widget -->
 
     <div class="card mb-4"  >
-      <h5 class="card-header">Please write a review of the hospital you visited</h5>
+      <h5 class="card-header">Please write a review of the medicie you took</h5>
       <div class="card-body"  >
         <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto"></form>
         <div class="row">
@@ -110,13 +167,24 @@
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Disease name:</label>
-              <input type="text" class="form-control" name="disease_name" required data-validation-required-message="Please enter disease name.">
+              <input style ="width:92%; float:left; " readonly type="text" class="form-control"  name="disease_name" id="pre_disease" required data-validation-required-message="Please search disease.">
+			        <span style ="float:left; margin-left:1%;"  class="input-group-append">
+					      <input type="button" onclick="openChild('modal_search_disease.php', this);" class="btn btn-secondary" value="Search" ></input>
+		        	</span>
+
             </div>
           </div>
+          <br><br>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Grade:</label>
-              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter grade.">
+              <label>Rate:</label>
+              <div>
+                <input type="radio" name="hospital_grade" value="1"> ★
+                <input type="radio" name="hospital_grade" value="2"> ★★
+                <input type="radio" name="hospital_grade" value="3"> ★★★
+                <input type="radio" name="hospital_grade" value="4"> ★★★★
+                <input type="radio" name="hospital_grade" value="5"> ★★★★★
+              </div>
             </div>
           </div>
           <div class="control-group form-group">
@@ -127,7 +195,7 @@
           </div>
           <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
           <div id="success"></div>
-          
+
         </form>
       </div>
 
@@ -153,7 +221,7 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	
+
 </body>
 
 </html>
