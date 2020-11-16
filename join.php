@@ -15,10 +15,10 @@
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
 
- 
+
 
 </head>
- 
+
 <body>
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -29,6 +29,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link " href="hospitals.php">Hospital</a>
           </li>
@@ -47,10 +50,11 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -60,10 +64,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
         </ul>
       </div>
     </div>
@@ -86,12 +87,10 @@
                                 <label style="margin-right:22.6%">Your Password</label>
                                 <input style="width:30%;"class="form-control" name="pw" type="password">
                         </div> <!-- form-group// -->
-                        
+
                         <br>
                         <input class="btn btn-secondary" style="width:30%" type="submit" value="Register">
                 </form>
         </div>
 </body>
 </html>
-
-
