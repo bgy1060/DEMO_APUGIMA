@@ -29,7 +29,7 @@
           var data = new google.visualization.arrayToDataTable([
 						<?php
 						  echo "['Hospital Name', 'Rate', { role: 'annotation' }]";
-							if (!isset($_GET['chartType']) || $_GET['chartType']=='total')
+							if ($_GET['chartType']=='total')
 							  $sql = "SELECT A.hospital_name, AVG(B.rate), RANK() OVER ( ORDER BY AVG(B.rate) DESC) AS ranking
 							              FROM hospitals AS A, hospital_reviews AS B
 							              WHERE A.hospital_id=B.hospital_id
@@ -51,7 +51,7 @@
           ]);
 
           var options = {
-						chart: { title: <?php echo "\"", $_GET['chartType'],"\"" ?>},
+						chart: { title: <?php echo "\"", $_GET['chartType'], " ranking\"" ?>},
             legend: { position: 'none', maxLines: 5},
             bars: 'horizontal', // Required for Material Bar Charts.
             axes: {
@@ -164,6 +164,7 @@
 				<br><br>
         <div id="chartdiv" style='height:500px;'></div>
 				<hr>
+				<div style='text-align:center;'><a href="hospitals.php">Back</a></div>
       </div>
 
 	  </div>

@@ -102,7 +102,7 @@
 
     <div class="card mb-4">
       <h5 class="card-header" style="display: flex !important;">Search
-				<a href='hospital_rank.php' class="ml-auto">See Ranking ▷</a>
+				<a href='hospital_rank.php?chartType=total' class="ml-auto">See Ranking ▷</a>
 			</h5>
       <div class="card-body" >
         <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto" style="width:60%;">
