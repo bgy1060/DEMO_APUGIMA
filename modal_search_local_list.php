@@ -8,7 +8,6 @@
 
     function inputClose(region) {
         opener.document.getElementById("pre-region").value = region; //일반적인 방법
-        localStorage.setItem("pre-region",region);
         self.close();
     }
 
@@ -35,15 +34,14 @@
     <div class="list-table">
 
         <?php
-          $sql2 = "select * from covid where region like '%$region%'";
+          $sql2 = "select distinct region from covid where region like '%$region%'";
           $result = mysqli_query($conn, $sql2);
           $resultCheck = mysqli_num_rows($result);
   
           if($resultCheck > 0){
               while($row = mysqli_fetch_assoc($result)){
-                  $region_id = $row["id"];
                   $region = $row["region"];
-                  echo "<a onclick=javascript:inputClose($region); > $region_id  $region </a> </br>";
+                  echo "<a onclick=javascript:inputClose('$region'); > $region </a> </br>";
               }
           }
         ?>

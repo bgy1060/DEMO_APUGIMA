@@ -12,51 +12,11 @@
 ?>
 
 <script>
-
-	window.onload = function() {
-		checkDiseaseSession();
-		checkHospitalSession();
-	}
 	function openChild(url, field) {
 		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";
 		window.name = "ori_window";
 		window.open(url, 'new_window', opt);
 	}
-	function checkDiseaseSession(){
-		const disease = localStorage.getItem("pre_disease");
-		if(disease == null || disease == undefined) return;
-		document.getElementById("pre_disease").value = disease; //일반적인 방법
-	}
-	function checkHospitalSession(){
-		const hospital = localStorage.getItem("pre_hospital");
-		if(hospital == null || hospital == undefined) return;
-		document.getElementById("pre_hospital").value = hospital; //일반적인 방법
-	}
-
-	function checkForm() {
-		var hospital = document.sendPrescription.params_hosptial;
-		// 병원 입력 유무 체크
-		if(hospital.value == '' ) {
-			window.alert("Please enter hospital");
-			return false; // 병원 입력이 안되어 있다면 submint 이벤트를 중지, 페이지 reload
-		}
-		var disease = document.sendPrescription.params_disease;
-		// 병 입력 유무 체크
-		if(disease.value == ''){
-			window.alert("Please enter disease name");
-			window.reload();
-			return false;
-		}
-		// TODO: 날짜 입력 유무 체크 -> 실패
-		// var date = document.sendPrescription.params_date;
-		// if(strtotime(date) == 0){
-		// 	window.alert("Please enter date");
-		// 	window.reload();
-		// 	return false;
-		// }
-
-	}
-
 </script>
 
 <!DOCTYPE html>
@@ -188,7 +148,7 @@
           $date2=$_POST['params_date2'];
 
          
-          $sql="SELECT COUNT(id), covid_date, region 
+          $sql="SELECT COUNT(id) as cnt, covid_date, region 
           FROM covid 
           WHERE DATE(covid_date) BETWEEN '$date1' and '$date2' and region='$local'
           GROUP BY covid_date, region WITH ROLLUP ";
@@ -204,15 +164,11 @@
 
           if($resultCheck > 0){
             while($row = mysqli_fetch_assoc($result)){
-                // 따옴표 때문에 ...
                 $covid_date = $row["covid_date"];
                 $region = $row["region"];
                 echo $covid_date.$region;
             }
           }
-          
-          
-           
           } 
             if(array_key_exists('send',$_POST))
           { 
