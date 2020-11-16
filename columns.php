@@ -1,5 +1,7 @@
 <?php
-	include_once 'includes/dbh.inc.php';
+  include_once 'includes/dbh.inc.php';
+  session_start();
+  
 ?>
 
 <!DOCTYPE html>
