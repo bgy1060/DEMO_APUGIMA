@@ -12,14 +12,10 @@
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/custom.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
-
- 
-
 </head>
- 
+
 <body>
 <!-- Navigation -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -30,6 +26,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link " href="hospitals.php">Hospital</a>
           </li>
@@ -48,10 +47,11 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -61,10 +61,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
         </ul>
       </div>
     </div>
@@ -72,7 +69,7 @@
         <div align='center' style="margin-top:7%">
         <h4 class="card-title mb-4 mt-1">Sign in</h4>
         <br>
- 
+
         <form method='get' action='login_ok.php'>
                 <div class="form-group">
                         <label style="margin-right:25.4%">Your ID</label>
@@ -87,13 +84,11 @@
         </form>
         <br />
         <button class="btn btn-secondary" style="width:30%" id="join" onclick="location.href='./join.php'">Sign up</button>
- 
+
         </div>
- 
 
-        
+
+
 </body>
- 
+
 </html>
-
-

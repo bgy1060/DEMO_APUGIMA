@@ -43,9 +43,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link " href="hospitals.php">Hospital</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
@@ -61,9 +62,10 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
-              <a class="dropdown-item" href="myreview.php">My Review</a>
+              <a class="dropdown-item  active" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
 
@@ -76,11 +78,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
-
         </ul>
       </div>
     </div>

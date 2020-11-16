@@ -33,12 +33,12 @@
             '{$_POST['params_doctor']}'
         )
     ";
-    
+
     $result = mysqli_query($conn, $sql);
     if($result === false){
-        alert("저장 과정에서 문제가 발생했습니다.");
+        alert("Error occurred.");
         history.back();
-    } 
+    }
     else {
     ?>
         <script>
@@ -47,6 +47,6 @@
 
 <?php
         }
-  
+
 
 ?>

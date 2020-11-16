@@ -42,6 +42,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
@@ -51,7 +54,7 @@
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
@@ -59,8 +62,9 @@
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="manage.php">Manage</a>
-
+							<a class="dropdown-item active" href="manage.php">Manage</a>
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
 
@@ -73,11 +77,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
-
         </ul>
       </div>
     </div>
@@ -93,30 +93,24 @@
 
 		<!-- Contact Form -->
     <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
-    <div class="row">
-      <div class="col-lg-8 mb-4">
-        <h4>Manage your account</h4>
-        <br>
-        <div class="card-body">
-          <label style="margin-right:25.4%">Change your password</label>
-          <form action='includes/change_password.php' method='get' class="input-group" style="width:50%;">
-            <input type="text" class="form-control" name="newpw" placeholder="">
-            <span class="input-group-append">
-              <input type="submit" class="btn btn-secondary" value="Change" ></input>
-            </span>
-          </form>
-
-          <br><br>
-          <?php
-          $id='';
-          echo "<label style='margin-right:25.4%'><a href='includes/delete_account.php'>Delete account</a></label>";
-          ?>
-        </div>
-
-      </div>
-
-    </div>
     <!-- /.row -->
+    <div class="card mb-4">
+      <div class="card-body" style="min-height:40vh;">
+        <h5>Change your password</h5><br>
+        <form action='includes/change_password.php' method='get' class="input-group" style="width:50%;">
+          <input type="text" class="form-control" name="newpw" placeholder="">
+          <span class="input-group-append">
+            <input type="submit" class="btn btn-secondary" value="Change" ></input>
+          </span>
+        </form>
+
+        <br><br><br>
+        <?php
+        $id='';
+        echo "<h5><a href='includes/delete_account.php'>Delete account</a></h5>";
+        ?>
+      </div>
+    </div>
 
   </div>
   <!-- /.container -->

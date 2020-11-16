@@ -51,6 +51,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link " href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
@@ -60,18 +63,19 @@
 						<a class="nav-link " href="columns.php">Column</a>
 					</li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle avtive" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="diary.php">Diary</a>
+              <a class="dropdown-item active" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -81,10 +85,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
         </ul>
       </div>
     </div>
@@ -94,7 +95,9 @@
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
-    <h1 class="mt-4 mb-3">Diary</h1>
+    <h1 class="mt-4 mb-3">My Page
+      <small>Diary</small>
+    </h1>
 		<div class="mt-auto mb-3 ml-auto"></div>
 		</div>
 
@@ -128,7 +131,7 @@
     </div>
     <!-- /.container -->
   </footer>
-  
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -140,12 +143,12 @@
 		$result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count=1;
-        
+
 
 		if($resultCheck > 0){
 			while($row = mysqli_fetch_assoc($result)){
 
-            
+
                 $diary_id = $row['diary_id'];
                 $date = $row['diary_date'];
 				$content = $row['memo'];
@@ -157,14 +160,14 @@
                 $medicine_result=mysqli_query($conn, $medicine_query);
                 $medicine_name=mysqli_fetch_assoc($medicine_result);
                 $medicine=$medicine_name['medicine_name'];
-                
+
 
                 $disease_query="SELECT disease_name FROM diseases WHERE disease_id='$disease_id'";
                 $disease_result=mysqli_query($conn, $disease_query);
                 $disease_name=mysqli_fetch_assoc($disease_result);
                 $disease=$disease_name['disease_name'];
-                
-				
+
+
 				echo "<div class='col-lg-4 mb-4'>
 					<div class='card h-100'>
 					  <h4 class='card-header'>$count . $medicine . $disease

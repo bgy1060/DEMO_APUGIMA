@@ -1,4 +1,5 @@
 <?php
+
     include_once 'includes/dbh.inc.php';
     session_start();
     if(!isset($_SESSION['userid'])){?>
@@ -28,22 +29,23 @@
 
 </head>
 
-<body style="height:100%;">
+<body>
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
+
       <a class="navbar-brand" href="index.php">Apugima</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="covid.php">Covid19</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="hospitals.php">Hospital</a>
+            <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
@@ -51,30 +53,34 @@
 					<li class="nav-item">
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown ">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            </div>
-        	</li>
+
           <li class="nav-item">
           <?php
-
-                if(isset($_SESSION['userid'])) {
+            if(isset($_SESSION['userid'])) {
           ?>
-                        <a class="nav-link" href='./logout.php'>Logout</a>
-        <?php
-                }
-                else {
-        ?>              <a class="nav-link" href='./login.php'>Login</a>
-        <?php   }
+          <a class="nav-link" href='./logout.php'>Logout</a>
+            <?php
+          }
+          else {
+            ?> <a class="nav-link" href='./login.php'>Login</a>
+          <?php
+          }
         ?>
+        </div>
         </li>
+
+					</li>
+
         </ul>
       </div>
     </div>
@@ -84,57 +90,24 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-		<div style="display: flex !important;">
-    <h1 class="mt-4 mb-3">Hospitals
-      <small>Reviews and ratings</small>
+    <h1 class="mt-4 mb-3">Covid19
     </h1>
 
-	</div>
-
-    <!-- Content Row -->
-    <!-- Search Widget -->
-
-    <div class="card mb-4"  >
-      <h5 class="card-header">Please write a review of the hospital you visited</h5>
-      <div class="card-body"  >
-        <div class="row">
+		<!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row">
       <div class="col-lg-8 mb-4">
-        <form action="hospital_write_action.php" method="POST">
-          <div class="control-group form-group">
-            <div class="controls" style="width:150%;">
-              <label>Hospital Name:</label>
-              <input type="text" class="form-control" name="hospital_name" required data-validation-required-message="Please enter the name.">
-              <p class="help-block"></p>
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls" style="width:150%;">
-              <label>Rate:</label>
-              <div>
-                <input type="radio" name="hospital_grade" value="1"> ★
-                <input type="radio" name="hospital_grade" value="2"> ★★
-                <input type="radio" name="hospital_grade" value="3"> ★★★
-                <input type="radio" name="hospital_grade" value="4"> ★★★★
-                <input type="radio" name="hospital_grade" value="5"> ★★★★★
-              </div>
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls" style="width:150%;">
-              <label>Memo:</label>
-              <textarea style="height : 300px;" rows="10" cols="100" class="form-control" name="params_memo" maxlength="999" style="resize:none"></textarea>
-            </div>
-          </div>
-          <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
+        <h4>빈칸~~</h4>
+        <br>
+        <div class="card-body">
 
 
-        </for>
+        </div>
+
       </div>
 
     </div>
-      </div>
-
-	  </div>
+    <!-- /.row -->
 
   </div>
   <!-- /.container -->
@@ -144,7 +117,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">DEMO 2020</p>
+			<p class="m-0 text-center text-white">DEMO 2020</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -153,7 +126,5 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
 </body>
-
 </html>
