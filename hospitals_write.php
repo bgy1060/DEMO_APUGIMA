@@ -151,6 +151,7 @@
         <form action="hospital_write_action.php" method="POST">
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
+
               <label >Hospital Name:</label>
               <br>
               <input style ="width:92%; float:left;" readonly type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
@@ -159,12 +160,19 @@
 			        </span> 
 			        <p class="help-block"></p>
               <br>
+             
             </div>
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Grade:</label>
-              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter your phone number.">
+              <label>Rate:</label>
+              <div>
+                <input type="radio" name="hospital_grade" value="1"> ★
+                <input type="radio" name="hospital_grade" value="2"> ★★
+                <input type="radio" name="hospital_grade" value="3"> ★★★
+                <input type="radio" name="hospital_grade" value="4"> ★★★★
+                <input type="radio" name="hospital_grade" value="5"> ★★★★★
+              </div>
             </div>
           </div>
           <div class="control-group form-group">

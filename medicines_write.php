@@ -84,7 +84,7 @@
 
     <!-- Page Heading/Breadcrumbs -->
 		<div style="display: flex !important;">
-    <h1 class="mt-4 mb-3">Hospitals
+    <h1 class="mt-4 mb-3">Medicines
       <small>Reviews and ratings</small>
     </h1>
     </div>
@@ -94,7 +94,7 @@
     <!-- Search Widget -->
 
     <div class="card mb-4"  >
-      <h5 class="card-header">Please write a review of the hospital you visited</h5>
+      <h5 class="card-header">Please write a review of the medicie you took</h5>
       <div class="card-body"  >
         <form action='hospitals_search.php' method='get' class="input-group ml-auto mr-auto"></form>
         <div class="row">
@@ -115,8 +115,14 @@
           </div>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Grade:</label>
-              <input type="text" class="form-control" name="hospital_grade" required data-validation-required-message="Please enter grade.">
+              <label>Rate:</label>
+              <div>
+                <input type="radio" name="hospital_grade" value="1"> ★
+                <input type="radio" name="hospital_grade" value="2"> ★★
+                <input type="radio" name="hospital_grade" value="3"> ★★★
+                <input type="radio" name="hospital_grade" value="4"> ★★★★
+                <input type="radio" name="hospital_grade" value="5"> ★★★★★
+              </div>
             </div>
           </div>
           <div class="control-group form-group">
