@@ -31,45 +31,44 @@
 
 <body>
 
-
-   <!-- Navigation -->
-   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.php">Apugima</a>
 
+      <a class="navbar-brand" href="index.php">Apugima</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown ">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Covid19
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="covidregion.php">Regional cases</a>
+              <a class="dropdown-item active" href="covidregion.php">Regional cases</a>
               <a class="dropdown-item" href="covidimport.php">Imported cases</a>
               <a class="dropdown-item" href="covidprogress.php">Progress</a>
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="hospitals.php">Hospital</a>
+            <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
 					<li class="nav-item">
-
-						<a class="nav-link " href="columns.php">Column</a>
+						<a class="nav-link" href="columns.php">Column</a>
 					</li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+
               <a class="dropdown-item" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
-              <a class="dropdown-item  active" href="myreview.php">My Review</a>
+              <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
             </div>
         	</li>
@@ -95,34 +94,24 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">My Page
-      <small>My Review</small>
+    <h1 class="mt-4 mb-3">Covid19
     </h1>
 
-		<!-- Content Row -->
+		<!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <div class="row">
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewh.php" class="btn btn-primary"><h3>Hospital</h3>Manage my reviews</a>
-        </div>
-      </div>
-      <div class="col-lg-4-2 mb-4">
-        <div class="card h-100">
-          <a href="myreviewm.php" class="btn"><h3>Medicine</h3>Manage my reviews</a>
-        </div>
-      </div>
-    </div>
+      <div class="col-lg-8 mb-4">
+        <h4>빈칸~~</h4>
+        <br>
+        <div class="card-body">
 
-    <div class="card mb-4">
-      <div class="card-body" style="min-height:40vh;">
-        <div class="row">
-					<?php
-						load_myreview_hopsital($conn);
-					?>
 
         </div>
+
       </div>
+
     </div>
+    <!-- /.row -->
 
   </div>
   <!-- /.container -->
@@ -140,31 +129,6 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<?php
-	  function load_myreview_hopsital($conn){
-	    $ID = $_SESSION['userid'];
-	    $sql = "SELECT A.hospital_name, B.hospital_review_id, B.memo, B.rate FROM hospitals AS A, hospital_reviews as B WHERE uid=$ID AND A.hospital_id=B.hospital_id;";
-	    $result = mysqli_query($conn, $sql);
-	    $resultCheck = mysqli_num_rows($result); //check if result is null
-	    if ($resultCheck >0){
-	      while ($row = mysqli_fetch_assoc($result)) { //for each row
-					$hospital_name = $row['hospital_name'];
-					$hospital_review_id = $row['hospital_review_id'];
-	        $memo = $row['memo'];
-	        $rate = $row['rate'];
-	        echo "<div class='col-lg-12'><h4 class='card-title'>$hospital_name</h4>
-	          <p>\"$memo\" (Rate: $rate)
-            <a href='includes/modify_myreviewh.php'?rid=$hospital_review_id'> MODIFY </a> /
-            <a href='includes/delete_myreviewh.php?rid=$hospital_review_id'> DELETE</a></p>
-	        </div>";
-	      }
-	    }
-	    else {
-	      echo "<p>empty</p>";
-	    }
-	  }
-	?>
 
 </body>
 </html>
