@@ -1,5 +1,4 @@
 <?php
-
 	include_once 'includes/dbh.inc.php';
 	session_start();
 	if(!isset($_SESSION['userid'])){?>
@@ -9,7 +8,6 @@
 			</script>
 	<?php
 	}
-
 ?>
 
 <!DOCTYPE html>
