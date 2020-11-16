@@ -16,13 +16,13 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
-	
+
 	window.onload = function() {
 		checkDiseaseSession();
 		checkHospitalSession();
 	}
 	function openChild(url, field) {
-		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";  
+		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";
 		window.name = "ori_window";
 		window.open(url, 'new_window', opt);
 	}
@@ -117,7 +117,7 @@
 		bottom: 54%;
 	}
 	.card-title{
-		font-weight :600; 
+		font-weight :600;
 	}
 </style>
 <body>
@@ -131,10 +131,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="covid.php">Covid19</a>
+					</li>
           <li class="nav-item">
-
             <a class="nav-link " href="hospitals.php">Hospital</a>
-
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
@@ -149,13 +150,14 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
               <a class="dropdown-item" href="diary.php">Diary</a>
-              <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
+              <a class="dropdown-item active" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+						</div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -165,11 +167,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
-
         </ul>
       </div>
     </div>
@@ -179,7 +177,9 @@
 
 	<!-- Page Heading/Breadcrumbs -->
 	<div style="display: flex !important;">
-		<h1 class="mt-4 mb-3">Prescriptions</h1>
+		<h1 class="mt-4 mb-3">My Page
+		<small>Prescriptions</small>
+	</h1>
 		<div class="mt-auto mb-3 ml-auto"></div>
 	</div>
 
@@ -197,7 +197,7 @@
               <input readonly type="text" class="form-control" name="params_hosptial" id="pre_hospital" required data-validation-required-message="Please search hospital.">
 			<span class="input-group-append">
 					<input type="button" onclick="openChild('modal_search_hospital.php', this);" class="btn btn-secondary" value="Search" ></input>
-			</span> 
+			</span>
 			  <p class="help-block"></p>
             </div>
           </div>
@@ -250,8 +250,8 @@
     <!-- /.row -->
 	<?php
     	$user_id = $_SESSION['userid'];
-		$sql = "SELECT * FROM prescriptions 
-				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id 
+		$sql = "SELECT * FROM prescriptions
+				INNER JOIN hospitals ON prescriptions.hospital_id = hospitals.hospital_id
 				INNER JOIN diseases ON prescriptions.disease_id = diseases.disease_id
 				WHERE uid=$user_id
 				ORDER BY prescription_date DESC;";

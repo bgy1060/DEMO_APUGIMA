@@ -33,6 +33,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
+            <a class="nav-link" href="covid.php">Covid19</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="hospitals.php">Hospital</a>
           </li>
           <li class="nav-item">
@@ -50,10 +53,11 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+            </div>
+        	</li>
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -63,10 +67,7 @@
         ?>              <a class="nav-link" href='./login.php'>Login</a>
         <?php   }
         ?>
-        </div>
         </li>
-
-					</li>
         </ul>
       </div>
     </div>
@@ -119,7 +120,7 @@
 
     <h1 class="my-4">Welcome to Apugima</h1>
 
-  
+
 
     <!-- Portfolio Section -->
 
