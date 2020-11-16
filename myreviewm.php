@@ -64,10 +64,10 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -94,13 +94,6 @@
     <h1 class="mt-4 mb-3">My Page
       <small>My Review</small>
     </h1>
-    <!--
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
-      </li>
-      <li class="breadcrumb-item active">Pricing</li>
-    </ol>-->
 
 		<!-- Content Row -->
     <div class="row">
@@ -122,12 +115,7 @@
 					<?php
 						load_myreview_medicine($conn);
 					?>
-					<!--
-          <div class="col-lg-12">
-						<h3 class="card-title">Hospital Code</h3>
-            <p class="card-text">Review</p>
-						<a href="#" >삭제</a>
-          </div>-->
+
         </div>
       </div>
     </div>
@@ -151,7 +139,7 @@
 
 	<?php
 	  function load_myreview_medicine($conn){
-	    $ID=1;
+	    $ID= $_SESSION['userid'];
 	    $sql = "SELECT A.medicine_name, B.medicine_review_id, B.memo, B.rate FROM medicines AS A, medicine_reviews AS B WHERE uid=$ID AND A.medicine_id=B.medicine_id;";
 	    $result = mysqli_query($conn, $sql);
 	    $resultCheck = mysqli_num_rows($result); //check if result is null
@@ -162,7 +150,9 @@
 	        $memo = $row['memo'];
 	        $rate = $row['rate'];
 	        echo "<div class='col-lg-12'><h4 class='card-title'>$medicine_name</h4>
-	          <p>\"$memo\" ($rate 점)<a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> DELETE</a></p>
+	          <p>\"$memo\" (Rate: $rate)
+            <a href='includes/modify_myreviewh.php'?rid=$medicine_review_id'> MODIFY </a> /
+            <a href='includes/delete_myreviewm.php?rid=$medicine_review_id'> DELETE</a></p>
 	        </div>";
 	      }
 	    }

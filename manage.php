@@ -60,10 +60,10 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
-            
+
           <li class="nav-item">
           <?php
-                
+
                 if(isset($_SESSION['userid'])) {
           ?>
                         <a class="nav-link" href='./logout.php'>Logout</a>
@@ -96,36 +96,23 @@
     <div class="row">
       <div class="col-lg-8 mb-4">
         <h4>Manage your account</h4>
-				<!--
-        <form name="manageAccount" novalidate>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>ID: </label>
-              <input type="text" class="form-control" id="user_id" required data-validation-required-message="Please enter your id.">
-              <p class="help-block"></p>
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Password: </label>
-              <input type="text" class="form-control" id="password" required data-validation-required-message="Please enter your password.">
-            </div>
-          </div>
-          <div class="control-group form-group">
-            <div class="controls">
-              <label>Name:</label>
-              <input type="text" class="form-control" id="name" required data-validation-required-message="Please enter your name.">
-            </div>
-          </div>
-          <div id="success"></div>
-          <! - - For success/fail messages
-          <button type="submit" class="btn btn-primary" id="manageAccountButton">Change</button>
-        </form>
-				-->
-				<?php
-				$id='';
-				echo "<a href='includes/delete_account.php?id=$id'>DELETE ACCOUNT</a>";
-				?>
+        <br>
+        <div class="card-body">
+          <label style="margin-right:25.4%">Change your password</label>
+          <form action='includes/change_password.php' method='get' class="input-group" style="width:50%;">
+            <input type="text" class="form-control" name="newpw" placeholder="">
+            <span class="input-group-append">
+              <input type="submit" class="btn btn-secondary" value="Change" ></input>
+            </span>
+          </form>
+
+          <br><br>
+          <?php
+          $id='';
+          echo "<label style='margin-right:25.4%'><a href='includes/delete_account.php'>Delete account</a></label>";
+          ?>
+        </div>
+
       </div>
 
     </div>
