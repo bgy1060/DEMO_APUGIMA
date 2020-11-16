@@ -1,16 +1,38 @@
 <?php
     include_once 'includes/dbh.inc.php';
     session_start();
-    if(!isset($_SESSION['userid'])){?>
-        <script>
-             alert("Please log in first.");
-             location.replace("./login.php");
-        </script>
-    <?php
+
+    $hospital_review_id = $_GET['rid'];
+    $uid = $_SESSION['userid'];
+
+    $hospital_query = "SELECT * from hospital_reviews WHERE hospital_review_id=$hospital_review_id";
+    $hospital_result = mysqli_query($conn, $hospital_query);
+    if(mysqli_num_rows($hospital_result)==1) {
+      $hospital_row = mysqli_fetch_array($hospital_result);
+      $memo = $hospital_row["memo"];
+      $rate = $hospital_row["rate"];
+
+      // 병원 이름 가져오기
+      $hospital_id = $hospital_row['hospital_id'];
+      $hospital_query = "SELECT hospital_name from hospitals WHERE hospital_id=$hospital_id";
+      $hospital_result = mysqli_query($conn, $hospital_query);
+      $hospital_row = mysqli_fetch_array($hospital_result);
+      $hospital_name = $hospital_row['hospital_name'];
     }
 ?>
 
 <script>
+
+  window.onload = function() {
+    document.getElementById("modify_memo").value = '<?php echo $memo ?>';//일반적인 방법
+    document.getElementById("pre_hospital").value = '<?php echo $hospital_name ?>';
+    fillradio(<?php echo $rate ?>);
+	}
+
+  function fillradio(rate){
+    console.log(rate);
+    $('[name=hospital_grade]:radio[value="'+rate+'"]').prop('checked',true);
+ }
 	function openChild(url, field) {
 		var opt = "toolbar=no, resizable=yes, scrollbars=yes, location=no, resize=no,menubar=no, directories=no, copyhistory=0, width=600, height=400, top=100, left=100";
 		window.name = "ori_window";
@@ -112,13 +134,14 @@
     <!-- Search Widget -->
 
     <div class="card mb-4"  >
-      <h5 class="card-header">Please write a review of the hospital you visited</h5>
+      <h5 class="card-header">Please modify a review of the hospital you visited</h5>
       <div class="card-body"  >
         <div class="row">
       <div class="col-lg-8 mb-4">
-        <form action="hospital_write_action.php" method="POST">
+        <form action='hospital_modify_action.php' method="POST">
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
+            <INPUT TYPE="hidden" NAME="review_id" SIZE=10 value=<?php echo $hospital_review_id ?>>
 
               <label >Hospital Name:</label>
               <br>
@@ -146,7 +169,7 @@
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
               <label>Memo:</label>
-              <textarea style="height : 300px;" rows="10" cols="100" class="form-control" name="params_memo" maxlength="999" style="resize:none"></textarea>
+              <textarea style="height : 300px;" rows="10" cols="100" class="form-control" id="modify_memo" name="params_memo" maxlength="999" style="resize:none"></textarea>
             </div>
           </div>
           <button style="margin-left:69%;" type="submit" class="btn btn-primary" id="sendPreButton">Register</button>
