@@ -150,8 +150,11 @@
       <INPUT TYPE="hidden" NAME="review_id" SIZE=10 value=<?php echo $medicine_review_id ?>>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
-              <label>Drug Name:</label>
-              <input type="text" class="form-control" id = "pre_drug" name="drug_name" required data-validation-required-message="Please enter drug name.">
+            <label>Drug Name:</label>
+              <input style ="width:92%; float:left;" readonly type="text" class="form-control" id="pre_drug" name="drug_name" required data-validation-required-message="Please enter drug name.">
+              <span style ="float:left; margin-left:1%;"  class="input-group-append">
+              <input type="button" onclick="openChild('modal_search_drug.php', this);" class="btn btn-secondary" value="Search" ></input>
+              </span>
               <p class="help-block"></p>
             </div>
           </div>
