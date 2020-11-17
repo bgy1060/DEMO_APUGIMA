@@ -14,7 +14,7 @@
 
       // 약 이름 가져오기
       $medicine_id = $medicine_row['medicine_id'];
-      $medicine_id_query = "SELECT medicine_name from medicines WHERE medicine_id=$medicine_id";
+      $medicine_id_query = "SELECT medicine_name from medicines WHERE medicine_id='$medicine_id'";
       $medicine_result = mysqli_query($conn, $medicine_id_query);
       $medicine_id_row = mysqli_fetch_array($medicine_result);
       $medicine_name = $medicine_id_row['medicine_name'];

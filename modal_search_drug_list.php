@@ -33,7 +33,7 @@
     <div class="list-table">
 
         <?php
-          $sql2 = "select * from medicines where medicine_name like '%$medicine_name%'";
+          $sql2 = "select distinct medicine_name, medicine_id from medicines where medicine_name like '%$medicine_name%'";
           $result = mysqli_query($conn, $sql2);
           $resultCheck = mysqli_num_rows($result);
   

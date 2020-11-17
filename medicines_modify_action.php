@@ -24,7 +24,7 @@
 
 
     $medicine_update_query = "UPDATE medicine_reviews 
-                        SET rate = $medicine_grade, uid = $user_id, memo = '{$_POST['params_memo']}', medicine_id=$medicine_id, disease_id=$disease_id
+                        SET rate = $medicine_grade, uid = $user_id, memo = '{$_POST['params_memo']}', medicine_id='$medicine_id', disease_id=$disease_id
                         WHERE medicine_review_id = $review_id";
 
     $medicine_result = mysqli_query($conn, $medicine_update_query);
