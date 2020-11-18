@@ -1,4 +1,5 @@
 <?php
+
 	include_once 'includes/dbh.inc.php';
 
 	session_start();
@@ -13,6 +14,7 @@
 		window.open(url, 'new_window', opt);
 	}
 </script>
+
 
 
 <!DOCTYPE html>
@@ -31,6 +33,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
+
 
 
 
@@ -122,12 +125,15 @@
     <div class="container">
       <a class="navbar-brand" href="index.php">Apugima</a>
 
+
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+
 					<li class="nav-item dropdown ">
+
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Covid19
             </a>
@@ -138,7 +144,9 @@
             </div>
           </li>
           <li class="nav-item">
+
             <a class="nav-link " href="hospitals.php">Hospital</a>
+
           </li>
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
@@ -146,7 +154,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="columns.php">Column</a>
 					</li>
+
           <li class="nav-item dropdown">
+
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
             </a>
@@ -156,7 +166,9 @@
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
 							<a class="dropdown-item" href="manage.php">Manage</a>
+
 						</div>
+
         	</li>
           <li class="nav-item">
           <?php
@@ -180,6 +192,7 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
+
 		<div style="display: flex !important;">
     <h1 class="mt-4 mb-3">Covid 19
       <small>- Regional Case</small>
@@ -292,6 +305,7 @@
 
 	  </div>
 
+
   </div>
   <!-- /.container -->
 
@@ -300,7 +314,9 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
+
       <p class="m-0 text-center text-white">DEMO 2020</p>
+
     </div>
     <!-- /.container -->
   </footer>
@@ -309,8 +325,10 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+
 	
 	?>
 </body>
+
 
 </html>

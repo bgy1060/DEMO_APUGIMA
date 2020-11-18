@@ -1,4 +1,3 @@
-
 <?php
     session_start();
 
@@ -33,4 +32,5 @@
                 alert('Finished update');
                 location.replace("./myreviewh.php");
         </script>
+
      }
