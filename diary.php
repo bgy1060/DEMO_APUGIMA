@@ -15,10 +15,10 @@
 <html>
 <style>
 .col-lg-4{
-	max-width:none !important;
+   max-width:none !important;
 }
 .card-date{
-	font-size: 15px;
+   font-size: 15px;
     position: absolute;
     right: 20px;
     top: 15px;
@@ -26,18 +26,18 @@
 </style>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
 
-	<title>Apugima</title>
+   <title>Apugima</title>
 
-	<!-- Bootstrap core CSS -->
-	<link href="vendor/bootstrap/css/custom.css" rel="stylesheet">
+   <!-- Bootstrap core CSS -->
+   <link href="vendor/bootstrap/css/custom.css" rel="stylesheet">
 
-	<!-- Custom styles for this template -->
-	<link href="css/modern-business.css" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="css/modern-business.css" rel="stylesheet">
 </head>
 
 <body>
@@ -66,9 +66,9 @@
           <li class="nav-item">
             <a class="nav-link" href="medicines.php">Medicine</a>
           </li>
-					<li class="nav-item">
-						<a class="nav-link " href="columns.php">Column</a>
-					</li>
+               <li class="nav-item">
+                  <a class="nav-link " href="columns.php">Column</a>
+               </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               My Page
@@ -77,9 +77,9 @@
               <a class="dropdown-item active" href="diary.php">Diary</a>
               <a class="dropdown-item" href="prescriptions.php">Prescriptions</a>
               <a class="dropdown-item" href="myreview.php">My Review</a>
-							<a class="dropdown-item" href="manage.php">Manage</a>
+                     <a class="dropdown-item" href="manage.php">Manage</a>
             </div>
-        	</li>
+           </li>
           <li class="nav-item">
           <?php
 
@@ -101,12 +101,14 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-		<div style="display: flex !important;">
+      <div style="display: flex !important;">
     <h1 class="mt-4 mb-3">My Page
       <small>Diary</small>
     </h1>
-		<div class="mt-auto mb-3 ml-auto"></div>
-		</div>
+      <div class="mt-auto mb-3 ml-auto">
+    <a href="diary_write.php" class="btn btn-primary">Write a review</a>
+    </div>
+      </div>
 
     <!-- Content Row -->
     <!-- Search Widget -->
@@ -117,16 +119,16 @@
           <span class="input-group-append">
           </span>
         </form>
-				<hr>
-				<!-- Comment with nested comments -->
-				<?php
-					load_columns($conn);
-				?>
+            <hr>
+            <!-- Comment with nested comments -->
+            <?php
+               load_columns($conn);
+            ?>
 
-				<hr>
+            <hr>
       </div>
 
-	  </div>
+     </div>
 
   </div>
   <!-- /.container -->
@@ -144,21 +146,21 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <?php
-	function load_columns($conn){
+   function load_columns($conn){
         $user_id = $_SESSION['userid'];
-		$sql = "SELECT * FROM diaries WHERE uid=$user_id;";
-		$result = mysqli_query($conn, $sql);
+      $sql = "SELECT * FROM diaries WHERE uid=$user_id;";
+      $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         $count=1;
 
 
-		if($resultCheck > 0){
-			while($row = mysqli_fetch_assoc($result)){
+      if($resultCheck > 0){
+         while($row = mysqli_fetch_assoc($result)){
 
 
                 $diary_id = $row['diary_id'];
                 $date = $row['diary_date'];
-				$content = $row['memo'];
+                    $content = $row['memo'];
                 $medicine_id=$row['medicine_id'];
                 $disease_id=$row['disease_id'];
 
@@ -175,20 +177,20 @@
                 $disease=$disease_name['disease_name'];
 
 
-				echo "<div class='col-lg-4 mb-4'>
-					<div class='card h-100'>
-					  <h4 class='card-header'>$count . $medicine . $disease
-					  	<p class='card-date'> $date</p>
-					  </h4>
-						<div class='card-body'>
-							<p class='card-text'>$content</p>
-						</div>
-					</div>
+            echo "<div class='col-lg-4 mb-4'>
+               <div class='card h-100'>
+                 <h4 class='card-header'>$count . $medicine . $disease
+                    <p class='card-date'> $date</p>
+                 </h4>
+                  <div class='card-body'>
+                     <p class='card-text'>$content</p>
+                  </div>
+               </div>
                   </div>";
                   $count+=1;
-			}
-		}
-	}
+         }
+      }
+   }
   ?>
 </body>
 
