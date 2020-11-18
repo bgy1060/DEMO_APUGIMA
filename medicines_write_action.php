@@ -6,7 +6,7 @@
 
     $drug_name = trim($_POST['drug_name']);
     $disease_name = trim($_POST['disease_name']);
-    $hospital_grade = (int)trim($_POST['hospital_grade']);
+    $medicine_grade = (int)trim($_POST['medicine_grade']);
     $user_id = $_SESSION['userid'];
 
 
@@ -32,7 +32,7 @@
                 '{$medicine_id}',
                 {$disease_id},
                 '{$_POST['params_memo']}',
-                {$hospital_grade}
+                {$medicine_grade}
             )
         ";
 
