@@ -38,4 +38,5 @@
                 alert('Finished update');
                 location.replace("./myreviewm.php");
         </script>
+
      }

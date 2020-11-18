@@ -14,7 +14,9 @@
 
       // 약 이름 가져오기
       $medicine_id = $medicine_row['medicine_id'];
+
       $medicine_id_query = "SELECT medicine_name from medicines WHERE medicine_id='$medicine_id'";
+
       $medicine_result = mysqli_query($conn, $medicine_id_query);
       $medicine_id_row = mysqli_fetch_array($medicine_result);
       $medicine_name = $medicine_id_row['medicine_name'];
@@ -150,11 +152,13 @@
       <INPUT TYPE="hidden" NAME="review_id" SIZE=10 value=<?php echo $medicine_review_id ?>>
           <div class="control-group form-group">
             <div class="controls" style="width:150%;">
+
             <label>Drug Name:</label>
               <input style ="width:92%; float:left;" readonly type="text" class="form-control" id="pre_drug" name="drug_name" required data-validation-required-message="Please enter drug name.">
               <span style ="float:left; margin-left:1%;"  class="input-group-append">
               <input type="button" onclick="openChild('modal_search_drug.php', this);" class="btn btn-secondary" value="Search" ></input>
               </span>
+
               <p class="help-block"></p>
             </div>
           </div>
