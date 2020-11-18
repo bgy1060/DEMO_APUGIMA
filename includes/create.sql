@@ -154,8 +154,8 @@ CREATE TABLE covid
     `covid_date`       DATE     NOT NULL,
     `region`     VARCHAR(45)     NOT NULL,
     `is_travel`  VARCHAR(45)     NULL,
-    `state`      VARCHAR(45)     NOT NULL,
     `cause`      VARCHAR(200)    NOT NULL,
+    `state`      VARCHAR(45)     NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -167,12 +167,12 @@ INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (4, '
 INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (5, 'hyun_bin','현빈','1234')
 
 -- INSERT other tables
-LOAD DATA INFILE 'hospitals.csv' INTO TABLE hospitals FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'medicines.csv' INTO TABLE medicines FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'diseases.csv' INTO TABLE diseases FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'prescriptions.csv' INTO TABLE prescriptions FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'diaries.csv' INTO TABLE diaries FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'hospital_reviews.csv' INTO TABLE hospital_reviews FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'medicine_reviews.csv' INTO TABLE medicine_reviews FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'covid.csv' INTO TABLE covid FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'columns.csv' INTO TABLE columns FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/hospitals.csv' INTO TABLE hospitals FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/medicines.csv' INTO TABLE medicines FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/diseases.csv' INTO TABLE diseases FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/prescriptions.csv' INTO TABLE prescriptions FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/diaries.csv' INTO TABLE diaries FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/hospital_reviews.csv' INTO TABLE hospital_reviews FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/medicine_reviews.csv' INTO TABLE medicine_reviews FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/covid.csv' INTO TABLE covid FIELDS TERMINATED BY ',';
+LOAD DATA INFILE 'dbs/columns.csv' INTO TABLE columns FIELDS TERMINATED BY ',';
