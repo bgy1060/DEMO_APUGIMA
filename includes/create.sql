@@ -154,8 +154,8 @@ CREATE TABLE covid
     `covid_date`       DATE     NOT NULL,
     `region`     VARCHAR(45)     NOT NULL,
     `is_travel`  VARCHAR(45)     NULL,
-    `cause`      VARCHAR(200)    NOT NULL,
     `state`      VARCHAR(45)     NOT NULL,
+    `cause`      VARCHAR(200)    NOT NULL,
     PRIMARY KEY (id)
 );
 
