@@ -63,7 +63,7 @@
         ]);
 
         var options = {
-          title: 'Classification of Covid 19 patients by country of entry abroad'
+          title: 'The cure status of Covid 19 patients'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -239,6 +239,11 @@
     <!-- Content Row -->
     <!-- Search Widget -->
 
+    <hr>
+    "Here you can see the results of an analysis of whether a Covid 19 patient has been cured. 
+    If you want to see all the Covid 19 cure results of our data, click the "view all result" checkbox button and click the "Find detail search" button. 
+    If you want to see the hospitalization or discharge trends during some periods, select the period, click "veiw local result" and select the yes or no button."
+    <hr>
     <div class="card mb-4">
       <h5 class="card-header" style="display: flex !important;">Search
 				

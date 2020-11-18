@@ -214,6 +214,13 @@
 
     <!-- Content Row -->
     <!-- Search Widget -->
+    <hr>
+    
+    "Here you can see the results of an analysis of where Covid 19 patients in Korea were infected with the virus. 
+    If you want to see all the Covid 19 source results of our data, just click the "view all result" checkbox button and click the "Find detail search" button. 
+    If you want to see the trend of infections from overseas or domestic during some period, you can select the period, click "veiw local result" and select the yes or no button."
+   
+    <hr>
 
     <div class="card mb-4">
       <h5 class="card-header" style="display: flex !important;">Search

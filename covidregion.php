@@ -196,15 +196,25 @@
 		<div style="display: flex !important;">
     <h1 class="mt-4 mb-3">Covid 19
       <small>- Regional Case</small>
+     
     </h1>
+   
 		<div class="mt-auto mb-3 ml-auto">
+    
 			</div>
 		</div>
 
     <!-- Content Row -->
     <!-- Search Widget -->
-
+    <hr>
+    
+    "Here you can see the results of analyzing Covid 19 patients by region. 
+    If you want to see all the results of our data, you can click the "view all result" checkbox button and click the "Find detail search" button. 
+    If you want to see the infection results of a specific area during some period, select the period, click "veiw local result" and select the area."
+   
+    <hr>
     <div class="card mb-4">
+    
       <h5 class="card-header" style="display: flex !important;">Search
 				
 			</h5>
