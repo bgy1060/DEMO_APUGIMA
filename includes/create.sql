@@ -1,6 +1,9 @@
-CREATE DATABASE TEAM03;
+CREATE DATABASE team03;
 
-USE TEAM03;
+USE team03;
+
+create user 'team03'@'localhost' identified by 'team03';
+grant all privileges on *.* to 'team03'@'localhost';
 
 -- users Table Create SQL
 CREATE TABLE users
@@ -171,12 +174,12 @@ INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (4, '
 INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (5, 'hyun_bin','현빈','1234');
 
 -- INSERT other tables
-LOAD DATA INFILE 'dbs/hospitals.csv' INTO TABLE hospitals FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/medicines.csv' INTO TABLE medicines FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/diseases.csv' INTO TABLE diseases FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/prescriptions.csv' INTO TABLE prescriptions FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/diaries.csv' INTO TABLE diaries FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/hospital_reviews.csv' INTO TABLE hospital_reviews FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/medicine_reviews.csv' INTO TABLE medicine_reviews FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/covid.csv' INTO TABLE covid FIELDS TERMINATED BY ',';
-LOAD DATA INFILE 'dbs/columns.csv' INTO TABLE columns FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/hospitals.csv' INTO TABLE hospitals FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/medicines.csv' INTO TABLE medicines FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/diseases.csv' INTO TABLE diseases FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/prescriptions.csv' INTO TABLE prescriptions FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/diaries.csv' INTO TABLE diaries FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/hospital_reviews.csv' INTO TABLE hospital_reviews FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/medicine_reviews.csv' INTO TABLE medicine_reviews FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/covid.csv' INTO TABLE covid FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/includes/dbs/columns.csv' INTO TABLE columns FIELDS TERMINATED BY ',';

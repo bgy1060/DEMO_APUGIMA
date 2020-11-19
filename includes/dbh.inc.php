@@ -1,6 +1,6 @@
 <?php
 
-$dbServername = "team03"; //local server
+$dbServername = "localhost"; //local server
 $dbUsername = "team03"; //default in xampp
 $dbPassword = "team03"; //default in xampp
 $dbName = "team03";
