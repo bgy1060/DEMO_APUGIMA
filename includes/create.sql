@@ -1,3 +1,7 @@
+CREATE DATABASE TEAM03;
+
+USE TEAM03;
+
 -- users Table Create SQL
 CREATE TABLE users
 (
@@ -160,11 +164,11 @@ CREATE TABLE covid
 );
 
 -- INSERT users
-INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (1, 'kim.eunji','김은지','1234')
-INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (2, 'shjj09','심정민','0')
-INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (3, 'bgy1060','박지연','3422')
-INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (4, 'one_bin','원빈','1234')
-INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (5, 'hyun_bin','현빈','1234')
+INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (1, 'kim.eunji','김은지','1234');
+INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (2, 'shjj09','심정민','0');
+INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (3, 'bgy1060','박지연','3422');
+INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (4, 'one_bin','원빈','1234');
+INSERT INTO `users`(`uid`, `user_id`, `user_name`, `user_password`) VALUES (5, 'hyun_bin','현빈','1234');
 
 -- INSERT other tables
 LOAD DATA INFILE 'dbs/hospitals.csv' INTO TABLE hospitals FIELDS TERMINATED BY ',';
