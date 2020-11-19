@@ -1,13 +1,7 @@
 <?php
 	include_once 'includes/dbh.inc.php';
 	session_start();
-	if(!isset($_SESSION['userid'])){?>
-			<script>
-					 alert("Please log in first.");
-					 location.replace("./login.php");
-			</script>
-	<?php
-	}
+	
 ?>
 
 <!DOCTYPE html>
