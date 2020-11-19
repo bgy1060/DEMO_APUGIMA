@@ -1,5 +1,5 @@
 <?php
-	include_once 'includes/dbh.inc.php';
+	include_once 'dbh.inc.php';
 	session_start();
 	if(!isset($_SESSION['userid'])){?>
 			<script>
@@ -23,10 +23,11 @@
 	if ($i == count($sqls)){
 			mysqli_query($conn, "COMMIT");
 			echo "<script>alert('Your account is successfully deleted.');</script>";
+			unset($_SESSION['userid']);
 	}
 	else {
 			mysqli_query($conn, "ROLLBACK");
-			echo "<script>alert('Error occured. Try again.');</script>";
+			echo "<script>alert('Error occurred. Try again.');</script>";
 	}
 ?>
 <meta http-equiv="refresh" content="0;url='../index.php'">
