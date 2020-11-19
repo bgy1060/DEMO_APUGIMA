@@ -1,8 +1,8 @@
 <?php
 
-$dbServername = "localhost"; //local server
-$dbUsername = "root"; //default in xampp
-$dbPassword = ""; //default in xampp
-$dbName = "apugima";
+$dbServername = "team03"; //local server
+$dbUsername = "team03"; //default in xampp
+$dbPassword = "team03"; //default in xampp
+$dbName = "team03";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
