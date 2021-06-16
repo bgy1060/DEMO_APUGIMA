@@ -82,7 +82,6 @@
 
 ## **6. Results**
 
-<br/>
 
 - **Result Video Link**
   - https://drive.google.com/file/d/1B_7fxRFe6z2SGR8pTARNSkMKZ4kGbVh9/view?usp=sharing
