@@ -1,7 +1,5 @@
 # DEMO_APUGIMA
 
-<br/>
-
 ##  **1. Project description**
 
 <br/>
@@ -89,8 +87,6 @@
 - **Result Video Link**
   - https://drive.google.com/file/d/1B_7fxRFe6z2SGR8pTARNSkMKZ4kGbVh9/view?usp=sharing
 
-<br/>
-
 - **Main Page**
 
 ![img](https://lh5.googleusercontent.com/0CWLj9N9PIXGps-naNh4HuUjBVt_AJB2DKp5mdJgbXleNIHml2QTideLga1N7jrvhW7IaQJAQg-XGEJOfZnzQcNHe7yHRKq4RyPlZ_3useG5dPv_yuuv93TSQWd0tgRTcpLdkj-CVfM)
@@ -111,7 +107,7 @@
 
 - **Medicine**
 
-![image-20210616134101134](C:\Users\daily-funding\AppData\Roaming\Typora\typora-user-images\image-20210616134101134.png)
+![img](https://lh5.googleusercontent.com/CYqYzOVSl8j4Ro_cT9tSXYF90GiuWsuQM3eF1hafpWYAO98PeBFxVUVP95pbPQ_J1Ybrd0ExmYelQy8HVVJTjs7VC8IAJmc1HqAkh38vBQNEjy6vl5GHpPpSvuuJfGbTuM_ZwnMTSSI)
 
 <br/>
 
