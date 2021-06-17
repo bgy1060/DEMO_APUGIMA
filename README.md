@@ -51,8 +51,8 @@
 4. **Diseases** : Disease Code, Disease Name, Symptom, Category
 5. **Prescriptions** : RecordID, UserID, Date, HopsitalID, MedicienID
 6. **Diaries** : DiaryID, UserID, Disease Code, MedicineID, Content, Date
-7. **Hospital Reviews **: ReviewID, UserID, HopsitalID, Memo, Rate
-8. **Medicine Reviews **: ReviewID, UserID, MedicineID, Disease Code, Memo, Rate
+7. **Hospital Reviews**: ReviewID, UserID, HopsitalID, Memo, Rate
+8. **Medicine Reviews**: ReviewID, UserID, MedicineID, Disease Code, Memo, Rate
 9. **Columns** : ColumnID, Date, Title, Content, Category
 
 <br/>
